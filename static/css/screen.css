@@ -36,23 +36,27 @@ a:hover {
 }
 h1 {
 	width:432px;
-	height:80px;
-	margin-top:75px;
-	font-size:4em;
-	letter-spacing:-4px;
+  height:80px;
+  margin-top:35px;
+  font-size:4em;
+  letter-spacing:-4px;
 }
 h1 a:hover {
 	text-decoration:none;
 }
+.bg_image{
+	position:absolute;
+  padding:20px 0px 100px 0px;
+}
 #wrapper {
-  /*background:url(../img/bg-1.gif) 0 0 no-repeat;*/
-	position:relative;
+  /*background:url(../img/india.png) 0 0 no-repeat;*/
+  position:relative;
 	padding:20px 0;
 	height:1000px;
 }
 #content {
-	position:relative;
-	padding:1px 0 100px 180px;
+  position:relative;
+  padding:1px 0 100px 180px;
 	width:580px;
 	margin:0 auto 0 180px;
 }
