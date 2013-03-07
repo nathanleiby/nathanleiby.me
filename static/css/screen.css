@@ -1,0 +1,69 @@
+@import url('http://fonts.googleapis.com/css?family=Arvo:regular,bold');
+
+html,body {
+	height:100%;
+}
+body {
+	margin:0;
+	padding:0;
+  background:#000;
+	font-family:Helvetica,arial,serif;
+	font-size:1em;
+	overflow:hidden;
+	color:#FFF;
+}
+p,h1,h2,ul,li {
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+a {
+	outline:none;
+	text-decoration:none;
+	color:#FFF;
+}
+a,p,span,h1 {
+	font-family:'Arvo',arial,serif;
+}
+a:hover {
+	text-decoration:underline;
+}
+.zebra1 {
+	color:#c80308;
+}
+.zebra2 {
+	color:#FFF;
+}
+h1 {
+	width:432px;
+  height:80px;
+  margin-top:35px;
+  font-size:4em;
+  letter-spacing:-4px;
+}
+h1 a:hover {
+	text-decoration:none;
+}
+.bg_image{
+	position:absolute;
+  padding:20px 0px 100px 0px;
+}
+#wrapper {
+  /*background:url(../img/india.png) 0 0 no-repeat;*/
+  position:relative;
+	padding:20px 0;
+	height:1000px;
+}
+#content {
+  position:relative;
+  padding:1px 0 100px 180px;
+	width:580px;
+	margin:0 auto 0 180px;
+}
+ul.general {
+	height:40px; /* Offset above the list of links */
+	font-family:'Arvo',arial,serif;
+}
+ul.links li {
+	height: 24px;
+}
