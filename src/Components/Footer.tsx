@@ -11,7 +11,35 @@ import {
 } from "@tabler/icons-react";
 import classes from "./Footer.module.css";
 
-export function FooterSocial() {
+const group1 = [
+  {
+    href: "https://github.com/nathanleiby",
+    Icon: IconBrandGithub,
+  },
+  {
+    href: "https://nathanleiby.itch.io/",
+    Icon: IconBrandItch,
+  },
+  {
+    href: "https://stackoverflow.com/users/950683/nate",
+    Icon: IconBrandStackoverflow,
+  },
+  {
+    href: "https://medium.com/@nathanleiby",
+    Icon: IconBrandMedium,
+  },
+];
+
+const group2 = [
+  { href: "https://nathanleiby.bandcamp.com/", Icon: IconBrandBandcamp },
+  {
+    href: "https://www.youtube.com/user/NotoriousNathaniel",
+    Icon: IconBrandYoutube,
+  },
+  { href: "https://soundcloud.com/natedogg", Icon: IconBrandSoundcloud },
+];
+
+export function Footer() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
@@ -21,101 +49,33 @@ export function FooterSocial() {
           justify="flex-end"
           wrap="nowrap"
         >
-          <ActionIcon
-            size="lg"
-            color="gray"
-            variant="subtle"
-            component="a"
-            href="https://github.com/nathanleiby"
-            target="_blank"
-          >
-            <IconBrandGithub
-              style={{ width: rem(18), height: rem(18) }}
-              stroke={1.5}
-            />
-          </ActionIcon>
-          <ActionIcon
-            size="lg"
-            color="gray"
-            variant="subtle"
-            component="a"
-            href="https://stackoverflow.com/users/950683/nate"
-            target="_blank"
-          >
-            <IconBrandStackoverflow
-              style={{ width: rem(18), height: rem(18) }}
-              stroke={1.5}
-            />
-          </ActionIcon>
-          <ActionIcon
-            size="lg"
-            color="gray"
-            variant="subtle"
-            component="a"
-            href="https://medium.com/@nathanleiby"
-            target="_blank"
-          >
-            <IconBrandMedium
-              style={{ width: rem(18), height: rem(18) }}
-              stroke={1.5}
-            />
-          </ActionIcon>
-
-          <ActionIcon
-            size="lg"
-            color="gray"
-            variant="subtle"
-            component="a"
-            href="https://nathanleiby.itch.io/"
-            target="_blank"
-          >
-            <IconBrandItch
-              style={{ width: rem(18), height: rem(18) }}
-              stroke={1.5}
-            />
-          </ActionIcon>
+          {group1.map(({ href, Icon }) => (
+            <ActionIcon
+              size="lg"
+              color="gray"
+              variant="subtle"
+              component="a"
+              href={href}
+              target="_blank"
+            >
+              <Icon style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+            </ActionIcon>
+          ))}
 
           <IconDotsVertical stroke={1.0} />
 
-          <ActionIcon
-            size="lg"
-            color="gray"
-            variant="subtle"
-            component="a"
-            href="https://nathanleiby.bandcamp.com/"
-            target="_blank"
-          >
-            <IconBrandBandcamp
-              style={{ width: rem(18), height: rem(18) }}
-              stroke={1.5}
-            />
-          </ActionIcon>
-          <ActionIcon
-            size="lg"
-            color="gray"
-            variant="subtle"
-            component="a"
-            href="https://www.youtube.com/user/NotoriousNathaniel"
-            target="_blank"
-          >
-            <IconBrandYoutube
-              style={{ width: rem(18), height: rem(18) }}
-              stroke={1.5}
-            />
-          </ActionIcon>
-          <ActionIcon
-            size="lg"
-            color="gray"
-            variant="subtle"
-            component="a"
-            href="https://soundcloud.com/natedogg"
-            target="_blank"
-          >
-            <IconBrandSoundcloud
-              style={{ width: rem(18), height: rem(18) }}
-              stroke={1.5}
-            />
-          </ActionIcon>
+          {group2.map(({ href, Icon }) => (
+            <ActionIcon
+              size="lg"
+              color="gray"
+              variant="subtle"
+              component="a"
+              href={href}
+              target="_blank"
+            >
+              <Icon style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+            </ActionIcon>
+          ))}
         </Group>
       </Container>
     </div>

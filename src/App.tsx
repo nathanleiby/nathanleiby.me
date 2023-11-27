@@ -1,7 +1,7 @@
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { Route, Router } from "wouter";
-import { FooterSocial } from "./Components/Footer";
+import { Footer } from "./Components/Footer";
 import { Header } from "./Components/Header";
 import { Welcome } from "./Components/Welcome";
 import { useHashLocation } from "./hash_routing";
@@ -19,7 +19,7 @@ export default function App() {
         <Route path="/travel">Travel</Route>
         <Route path="/writing">Writing</Route>
         <Route path="/about">About</Route>
-        <FooterSocial />
+        <Footer />
       </MantineProvider>
     </Router>
   );
