@@ -20,6 +20,9 @@ export const theme = createTheme({
   colors: {
     myColor,
   },
+  fontFamily: "Verdana, sans-serif",
+  fontFamilyMonospace: "Monaco, Courier, monospace",
+  headings: { fontFamily: "Greycliff CF, sans-serif" },
 });
 
 export const vars = themeToVars(theme);
