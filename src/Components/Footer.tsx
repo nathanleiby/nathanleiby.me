@@ -1,5 +1,6 @@
 import { ActionIcon, Container, Group, rem } from "@mantine/core";
 import {
+  IconBook,
   IconBrandBandcamp,
   IconBrandGithub,
   IconBrandItch,
@@ -7,7 +8,7 @@ import {
   IconBrandSoundcloud,
   IconBrandStackoverflow,
   IconBrandYoutube,
-  IconDotsVertical,
+  IconMinusVertical,
 } from "@tabler/icons-react";
 import classes from "./Footer.module.css";
 
@@ -31,6 +32,7 @@ const group1 = [
 ];
 
 const group2 = [
+  { href: "https://www.goodreads.com/user/show/30810164", Icon: IconBook },
   { href: "https://nathanleiby.bandcamp.com/", Icon: IconBrandBandcamp },
   {
     href: "https://www.youtube.com/user/NotoriousNathaniel",
@@ -62,7 +64,7 @@ export function Footer() {
             </ActionIcon>
           ))}
 
-          <IconDotsVertical stroke={1.0} />
+          <IconMinusVertical stroke={1.0} />
 
           {group2.map(({ href, Icon }) => (
             <ActionIcon
