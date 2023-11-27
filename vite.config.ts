@@ -5,5 +5,5 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
-  base: "/",
+  base: "/", // (optional, just making it explicit for GH Pages deploy debugging)
 });
