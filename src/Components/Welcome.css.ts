@@ -1,6 +1,6 @@
+import { rem } from "@mantine/core";
 import { style } from "@vanilla-extract/css";
 import { vars } from "../theme";
-import { rem } from "@mantine/core";
 
 export const title = style({
   color: vars.colors.black,
