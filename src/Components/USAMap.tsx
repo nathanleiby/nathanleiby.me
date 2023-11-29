@@ -47,7 +47,7 @@ const visitedPlaces = [
   "Louisiana",
   "Maine",
   // "Montana",
-  "Nebraska",
+  // "Nebraska",
   "Nevada",
   // "New Hampshire",
   "New Jersey",
