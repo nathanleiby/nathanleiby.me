@@ -132,7 +132,8 @@ export const USAMap = () => {
                         subject={centroid}
                         dx={offsets[cur.id][0]}
                         dy={offsets[cur.id][1]}
-                        // connectorProps={undefined}
+                        // @ts-ignore
+                        connectorProps={undefined}
                       >
                         <text
                           x={4}
