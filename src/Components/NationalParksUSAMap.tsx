@@ -6,6 +6,14 @@ import nationalParks from "./data/national-parks.geo.json";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
+// TODO: Consider a different viz of regions vs points
+// - https://observablehq.com/@erincaughey/national-parks-geojson
+// - https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States#/map/0
+// - https://www.nps.gov/maps/tools/npmap.js/examples/geojson-layer/index.html
+
+// https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States
+// TODO: This list (63 items) doesn't quite align
+
 const visitedPlaces = [
   // "Wolf Trap National Park for the Performing Arts",
   // "National Park of American Samoa",
