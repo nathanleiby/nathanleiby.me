@@ -1,0 +1,2 @@
+- [ ] projects: highlight a few and nudge to GH and Itch
+- [ ] add a baking section (esp breads)
