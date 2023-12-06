@@ -19,6 +19,7 @@ export function WorldMap() {
     "India",
     "Thailand",
     "Vietnam",
+    "Philippines",
 
     // Europe
     "Spain",
