@@ -5,7 +5,7 @@ import { NationalParksUSAMap } from "./NationalParksUSAMap";
 import { USAMap } from "./USAMap";
 import { WorldMap } from "./WorldMap";
 
-// TODO: Consider adding USA national parks
+// TODO: Consider adding a "hiking" or "outdoors" section to highlight where I've backpacked, kayaked tour'd, etc. Could focus on CA and Western USA
 
 export function Travel() {
   return (

@@ -36,7 +36,13 @@ const visitedPlaces = [
   "North Cascades National Park",
   "Olympic National Park",
   "Rocky Mountain National Park",
+  // AZ:
   // "Saguaro National Park",
+  // "Petrified Forest National Park",
+
+  // NV:
+  // "Great Basin National Park",
+
   "Shenandoah National Park",
   // "Glacier National Park",
   "Arches National Park",
@@ -49,7 +55,6 @@ const visitedPlaces = [
   // "Badlands National Park",
   "Zion National Park",
   // "Mesa Verde National Park",
-  // "Great Basin National Park",
   "Capitol Reef National Park",
   "Canyonlands National Park",
   // "Great Sand Dunes National Park & Preserve",
@@ -75,10 +80,13 @@ const visitedPlaces = [
   // "Wrangell - St Elias National Park & Preserve",
   //// TODO:
   // "White Sands National Park",
+  // .. should it be
+  // "White Sands National Monument",
 ];
 
 const nationalParksOnly = _.filter(nationalParks.features, (x) => {
   return _.includes(x.properties.Name, "National Park");
+  // _.includes(x.properties.Name, "National Monument")
 });
 
 const geography = {
