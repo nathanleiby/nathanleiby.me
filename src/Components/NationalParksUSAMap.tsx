@@ -24,7 +24,7 @@ const visitedPlaces = [
   // "Congaree National Park",
   // "Black Canyon Of The Gunnison National Park",
   // "Cuyahoga Valley National Park",
-  // "Carlsbad Caverns National Park",
+  "Carlsbad Caverns National Park",
   // "Hawaii Volcanoes National Park",
   // "Mammoth Cave National Park",
   "Crater Lake National Park",
@@ -54,12 +54,12 @@ const visitedPlaces = [
   "Canyonlands National Park",
   // "Great Sand Dunes National Park & Preserve",
   "Lassen Volcanic National Park",
-  // "Petrified Forest National Park",
+  "Petrified Forest National Park",
   // "Biscayne National Park",
   // "Guadalupe Mountains National Park",
   // "Wind Cave National Park",
   // "Big Bend National Park",
-  // "Death Valley National Park",
+  "Death Valley National Park",
   "Yosemite National Park",
   // "Kings Canyon National Park",
   "Joshua Tree National Park",
@@ -73,6 +73,8 @@ const visitedPlaces = [
   // "Kobuk Valley National Park",
   // "Lake Clark National Park & Preserve",
   // "Wrangell - St Elias National Park & Preserve",
+  //// TODO:
+  // "White Sands National Park",
 ];
 
 const nationalParksOnly = _.filter(nationalParks.features, (x) => {
