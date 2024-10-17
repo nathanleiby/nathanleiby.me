@@ -20,12 +20,14 @@ export function WorldMap() {
     "Thailand",
     "Vietnam",
     "Philippines",
+    "Taiwan",
 
     // Europe
     "Spain",
     "Germany",
     "France",
     "United Kingdom",
+    "Norway",
 
     // North America
     "Canada",
@@ -33,7 +35,6 @@ export function WorldMap() {
     "Panama",
     "Costa Rica",
     "Mexico",
-    "Norway",
     "Dominican Republic",
     "Haiti",
 
@@ -44,12 +45,14 @@ export function WorldMap() {
     "Tanzania",
     "Botswana",
     "Zambia",
+    "Madagascar",
 
     // South America
     "Brazil",
     "Argentina",
     "Chile",
     "Uruguay",
+    "Ecuador",
 
     // Oceana
     "New Zealand",
