@@ -28,6 +28,7 @@ export function WorldMap() {
     "France",
     "United Kingdom",
     "Norway",
+    "Netherlands",
 
     // North America
     "Canada",
