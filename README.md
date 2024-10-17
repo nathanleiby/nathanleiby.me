@@ -1,5 +1,13 @@
-# Mantine + Vite + Vanilla extract template
+# Personal website
 
-Get started with the template by clicking `Use this template` button on the top of the page.
+Run locally with
 
-[Documentation](https://mantine.dev/styles/vanilla-extract/)
+```
+npm run dev
+```
+
+Deploy latest to gh pages with
+
+```
+npm run deploy
+```
