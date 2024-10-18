@@ -17,6 +17,7 @@ export function WorldMap() {
     "Japan",
     "China",
     "India",
+    "Sri Lanka",
     "Thailand",
     "Vietnam",
     "Philippines",
