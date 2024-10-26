@@ -3,8 +3,7 @@
 
 --
 
-devlog on itch
-https://nathanleiby.com/#/
+https://nathanleiby.me/#/
 
 link out to most relevant stuff
 
