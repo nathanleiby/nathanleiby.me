@@ -10,7 +10,7 @@ import { WorldMap } from "./WorldMap";
 export function Travel() {
   return (
     <Container>
-      <Title className={classes.title} ta="center">
+      <Title className={classes.title} mb="lg">
         Travel
       </Title>
       <Title size={"sm"}>World</Title>

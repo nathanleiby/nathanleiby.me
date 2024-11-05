@@ -8,7 +8,7 @@ import classes from "./Header.module.css";
 const links = [
   // { link: "/projects", label: "Projects" },
   { link: "/travel", label: "Travel" },
-  // { link: "/writing", label: "Writing" },
+  { link: "/writing", label: "Writing" },
   { link: "/about", label: "About" },
 ];
 
