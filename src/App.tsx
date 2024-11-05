@@ -31,6 +31,14 @@ export default function App() {
         <Route path="/about">
           <About />
         </Route>
+        <Route
+          path="/meet"
+          component={() => {
+            window.location.href =
+              "https://calendar.app.google/twDK6AktDZqiqq159";
+            return null;
+          }}
+        />
         <Footer />
       </MantineProvider>
     </Router>
