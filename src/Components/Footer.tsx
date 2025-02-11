@@ -4,6 +4,7 @@ import {
   IconBrandBandcamp,
   IconBrandGithub,
   IconBrandItch,
+  IconBrandLinkedin,
   IconBrandMedium,
   IconBrandSoundcloud,
   IconBrandStackoverflow,
@@ -16,6 +17,10 @@ const group1 = [
   {
     href: "https://github.com/nathanleiby",
     Icon: IconBrandGithub,
+  },
+  {
+    href: "https://www.linkedin.com/in/nathanleiby/",
+    Icon: IconBrandLinkedin,
   },
   {
     href: "https://nathanleiby.itch.io/",
