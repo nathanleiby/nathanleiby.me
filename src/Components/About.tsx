@@ -16,7 +16,7 @@ export function About() {
         <a href="https://calendar.app.google/twDK6AktDZqiqq159" target="_">
           meeting
         </a>{" "}
-        with me.
+        with me. If you're in San Francisco, I'm glad to meet up in person.
       </Text>
       <Text mt="xl">
         See my{" "}
