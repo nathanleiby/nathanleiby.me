@@ -95,6 +95,20 @@ This iconic route takes you through the heart of Japan, connecting the country's
   `,
 };
 
+// Styles for the accordion headers
+const accordionHeaderStyle = {
+  backgroundColor: "#f0f9ff",
+  borderRadius: "4px",
+  margin: "4px 0",
+  padding: "8px 12px",
+};
+
+const accordionLabelStyle = {
+  fontSize: "1.1rem",
+  fontWeight: 600,
+  color: "#1c7ed6",
+};
+
 /**
  * Component for displaying a narrative description of a bicycle tour
  *
@@ -116,7 +130,9 @@ export function TourDescription({ tourId }: TourDescriptionProps) {
 
       <Accordion defaultValue="overview">
         <Accordion.Item value="overview">
-          <Accordion.Control>Overview</Accordion.Control>
+          <Accordion.Control style={accordionHeaderStyle}>
+            <Text style={accordionLabelStyle}>Overview</Text>
+          </Accordion.Control>
           <Accordion.Panel>
             <Box className="markdown-content">
               <ReactMarkdown>
@@ -128,7 +144,9 @@ export function TourDescription({ tourId }: TourDescriptionProps) {
 
         {description.includes("## Day-by-Day Journey") && (
           <Accordion.Item value="day-by-day">
-            <Accordion.Control>Day-by-Day</Accordion.Control>
+            <Accordion.Control style={accordionHeaderStyle}>
+              <Text style={accordionLabelStyle}>Day-by-Day</Text>
+            </Accordion.Control>
             <Accordion.Panel>
               <Box className="markdown-content">
                 <ReactMarkdown>
@@ -145,7 +163,9 @@ export function TourDescription({ tourId }: TourDescriptionProps) {
 
         {description.includes("## Route Reflections") && (
           <Accordion.Item value="reflections">
-            <Accordion.Control>Route Tips</Accordion.Control>
+            <Accordion.Control style={accordionHeaderStyle}>
+              <Text style={accordionLabelStyle}>Route Tips</Text>
+            </Accordion.Control>
             <Accordion.Panel>
               <Box className="markdown-content">
                 <ReactMarkdown>
