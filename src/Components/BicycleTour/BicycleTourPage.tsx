@@ -63,28 +63,28 @@ const availableTours: Record<
     name: "East Hokkaido Tour",
     files: [
       {
-        url: "/data/gpx/east-hokkaido/Kussharo_to_Akan.gpx",
-        name: "Day 1: Lake Kussharo to Lake Akan",
-      },
-      {
-        url: "/data/gpx/east-hokkaido/Akan_to_Kushiro.gpx",
-        name: "Day 2: Lake Akan to Kushiro",
-      },
-      {
-        url: "/data/gpx/east-hokkaido/Nakashibetsu_to_Wakoto_Lake_Kussharo_.gpx",
-        name: "Day 3: Nakashibetsu to Lake Kussharo",
-      },
-      {
-        url: "/data/gpx/east-hokkaido/Rausu_to_Nakashibetsu.gpx",
-        name: "Day 4: Rausu to Nakashibetsu",
-      },
-      {
         url: "/data/gpx/east-hokkaido/Shari_to_Utoro_ride_into_Shiretoko_park.gpx",
-        name: "Day 5: Shari to Utoro (Shiretoko Park)",
+        name: "Day 1: Shari to Utoro (Shiretoko Park)",
       },
       {
         url: "/data/gpx/east-hokkaido/Utoro_to_Rausu_exploring_east_side_of_Shiretoko.gpx",
-        name: "Day 6: Utoro to Rausu (East Shiretoko)",
+        name: "Day 2: Utoro to Rausu (East Shiretoko)",
+      },
+      {
+        url: "/data/gpx/east-hokkaido/Rausu_to_Nakashibetsu.gpx",
+        name: "Day 3: Rausu to Nakashibetsu",
+      },
+      {
+        url: "/data/gpx/east-hokkaido/Nakashibetsu_to_Wakoto_Lake_Kussharo_.gpx",
+        name: "Day 4: Nakashibetsu to Lake Kussharo",
+      },
+      {
+        url: "/data/gpx/east-hokkaido/Kussharo_to_Akan.gpx",
+        name: "Day 5: Lake Kussharo to Lake Akan",
+      },
+      {
+        url: "/data/gpx/east-hokkaido/Akan_to_Kushiro.gpx",
+        name: "Day 6: Lake Akan to Kushiro",
       },
     ],
   },
