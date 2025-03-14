@@ -39,6 +39,17 @@ Run tests with coverage report
 npm run test:coverage
 ```
 
+### Continuous Integration
+
+This project uses GitHub Actions for continuous integration. The CI workflow runs automatically on every push to the master branch and pull requests, performing the following checks:
+
+1. Linting - Checks code style and quality
+2. Testing - Runs all unit tests with coverage reporting
+3. Building - Verifies the project builds successfully
+4. Bundle size analysis - Reports on the size of the generated bundles
+
+CI artifacts (test coverage reports and build output) are available in the GitHub Actions workflow run.
+
 ## Deployment
 
 This project can be manually deployed to GitHub Pages using either the provided script or directly through GitHub Actions.
