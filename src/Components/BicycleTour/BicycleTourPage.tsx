@@ -35,7 +35,7 @@ export function BicycleTourPage() {
   const metrics = calculateRouteMetrics(sampleRoute);
 
   return (
-    <Container size="xl">
+    <Container size="md">
       <Title order={2} mb="lg">
         Bicycle Touring
       </Title>
