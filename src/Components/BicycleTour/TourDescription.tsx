@@ -15,8 +15,6 @@ const tourDescriptions: Record<string, string> = {
   "east-hokkaido": `
 # East Hokkaido Tour: A 6-Day Cycling Adventure
 
-## Journey Overview
-
 My adventure through Eastern Hokkaido was a perfect blend of stunning landscapes, serene wilderness, and refreshing onsen experiences. Here's how my route unfolded:
 
 - **Starting Point**: Took a train to Shiretoko-Shari
@@ -59,7 +57,7 @@ Continuing my journey through Hokkaido's volcanic lake district, I rode from Lak
 
 On my final day, I rode from Lake Akan to Kushiro, where I concluded my cycling adventure. Toward the end of this segment, I serendipitously found myself on a dedicated cycling path leading into Kushiro—a pleasant surprise that made for a smooth finish to the journey.
 
-## Route Reflections & Recommendations
+## Route Reflections
 
 If you're planning your own Eastern Hokkaido cycling adventure, here are some thoughts based on my experience:
 
@@ -79,8 +77,6 @@ Overall, Eastern Hokkaido offered an incredible cycling experience with its comb
   `,
   "tokyo-osaka": `
 # Tokyo to Osaka: A Classic 5-Day Cycling Route
-
-## Journey Overview
 
 This iconic route takes you through the heart of Japan, connecting the country's two largest metropolitan areas while showcasing beautiful coastal and mountain scenery along the way.
 
@@ -120,7 +116,7 @@ export function TourDescription({ tourId }: TourDescriptionProps) {
 
       <Accordion defaultValue="overview">
         <Accordion.Item value="overview">
-          <Accordion.Control>Journey Overview</Accordion.Control>
+          <Accordion.Control>Overview</Accordion.Control>
           <Accordion.Panel>
             <Box className="markdown-content">
               <ReactMarkdown>
@@ -132,7 +128,7 @@ export function TourDescription({ tourId }: TourDescriptionProps) {
 
         {description.includes("## Day-by-Day Journey") && (
           <Accordion.Item value="day-by-day">
-            <Accordion.Control>Day-by-Day Journey</Accordion.Control>
+            <Accordion.Control>Day-by-Day</Accordion.Control>
             <Accordion.Panel>
               <Box className="markdown-content">
                 <ReactMarkdown>
@@ -149,9 +145,7 @@ export function TourDescription({ tourId }: TourDescriptionProps) {
 
         {description.includes("## Route Reflections") && (
           <Accordion.Item value="reflections">
-            <Accordion.Control>
-              Route Reflections & Recommendations
-            </Accordion.Control>
+            <Accordion.Control>Route Tips</Accordion.Control>
             <Accordion.Panel>
               <Box className="markdown-content">
                 <ReactMarkdown>
