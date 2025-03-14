@@ -15,3 +15,13 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: vi.fn(),
   })),
 });
+
+// Mock ResizeObserver which is not available in the JSDOM environment
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+// Assign the mock to the global object
+global.ResizeObserver = ResizeObserverMock;

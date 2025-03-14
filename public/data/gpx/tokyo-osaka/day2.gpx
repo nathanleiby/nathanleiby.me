@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>Tokyo to Osaka Tour - Day 2: Hakone to Shizuoka</name>
+    <desc>Second day of cycling from Hakone to Shizuoka</desc>
+    <time>2023-07-02T07:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 2: Hakone to Shizuoka</name>
+    <trkseg>
+      <trkpt lat="35.2324" lon="139.1069">
+        <ele>720</ele>
+        <time>2023-07-02T07:00:00Z</time>
+        <name>Hakone</name>
+      </trkpt>
+      <trkpt lat="35.2000" lon="139.0000">
+        <ele>600</ele>
+        <time>2023-07-02T08:30:00Z</time>
+      </trkpt>
+      <trkpt lat="35.1500" lon="138.9000">
+        <ele>450</ele>
+        <time>2023-07-02T10:00:00Z</time>
+      </trkpt>
+      <trkpt lat="35.1000" lon="138.8000">
+        <ele>300</ele>
+        <time>2023-07-02T11:30:00Z</time>
+      </trkpt>
+      <trkpt lat="35.0500" lon="138.7000">
+        <ele>200</ele>
+        <time>2023-07-02T13:00:00Z</time>
+      </trkpt>
+      <trkpt lat="35.0000" lon="138.6000">
+        <ele>100</ele>
+        <time>2023-07-02T14:30:00Z</time>
+      </trkpt>
+      <trkpt lat="34.9756" lon="138.3830">
+        <ele>15</ele>
+        <time>2023-07-02T16:00:00Z</time>
+        <name>Shizuoka</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

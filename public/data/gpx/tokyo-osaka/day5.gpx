@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>Tokyo to Osaka Tour - Day 5: Kyoto to Osaka</name>
+    <desc>Fifth day of cycling from Kyoto to Osaka</desc>
+    <time>2023-07-05T07:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 5: Kyoto to Osaka</name>
+    <trkseg>
+      <trkpt lat="35.0116" lon="135.7681">
+        <ele>45</ele>
+        <time>2023-07-05T07:00:00Z</time>
+        <name>Kyoto</name>
+      </trkpt>
+      <trkpt lat="34.9800" lon="135.7500">
+        <ele>40</ele>
+        <time>2023-07-05T08:00:00Z</time>
+      </trkpt>
+      <trkpt lat="34.9500" lon="135.7000">
+        <ele>35</ele>
+        <time>2023-07-05T09:00:00Z</time>
+      </trkpt>
+      <trkpt lat="34.9200" lon="135.6500">
+        <ele>30</ele>
+        <time>2023-07-05T10:00:00Z</time>
+      </trkpt>
+      <trkpt lat="34.8900" lon="135.6000">
+        <ele>25</ele>
+        <time>2023-07-05T11:00:00Z</time>
+      </trkpt>
+      <trkpt lat="34.8600" lon="135.5500">
+        <ele>20</ele>
+        <time>2023-07-05T12:00:00Z</time>
+      </trkpt>
+      <trkpt lat="34.6937" lon="135.5023">
+        <ele>15</ele>
+        <time>2023-07-05T13:00:00Z</time>
+        <name>Osaka</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

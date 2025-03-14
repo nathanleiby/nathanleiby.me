@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>East Hokkaido Tour - Day 3: Bihoro Pass to Abashiri</name>
+    <desc>Third day of cycling from Bihoro Pass to Abashiri</desc>
+    <time>2023-06-03T07:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 3: Bihoro Pass to Abashiri</name>
+    <trkseg>
+      <trkpt lat="43.7100" lon="143.8500">
+        <ele>525</ele>
+        <time>2023-06-03T07:00:00Z</time>
+        <name>Bihoro Pass</name>
+      </trkpt>
+      <trkpt lat="43.7500" lon="143.8000">
+        <ele>400</ele>
+        <time>2023-06-03T08:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.8000" lon="143.7500">
+        <ele>300</ele>
+        <time>2023-06-03T10:00:00Z</time>
+      </trkpt>
+      <trkpt lat="43.8500" lon="143.7000">
+        <ele>200</ele>
+        <time>2023-06-03T11:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.9000" lon="143.6500">
+        <ele>150</ele>
+        <time>2023-06-03T13:00:00Z</time>
+      </trkpt>
+      <trkpt lat="43.9500" lon="143.6000">
+        <ele>100</ele>
+        <time>2023-06-03T14:30:00Z</time>
+      </trkpt>
+      <trkpt lat="44.0207" lon="144.2694">
+        <ele>5</ele>
+        <time>2023-06-03T16:00:00Z</time>
+        <name>Abashiri</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

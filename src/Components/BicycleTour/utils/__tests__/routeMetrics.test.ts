@@ -3,10 +3,10 @@ import { calculateRouteMetrics, type RoutePoint } from "../routeMetrics";
 
 describe("routeMetrics", () => {
   const sampleRoute: RoutePoint[] = [
-    { lat: 35.6762, lng: 139.6503, name: "Tokyo" },
-    { lat: 34.6937, lng: 135.5023, name: "Osaka" },
-    { lat: 35.0116, lng: 135.7681, name: "Kyoto" },
-    { lat: 35.6762, lng: 139.6503, name: "Tokyo" },
+    { lat: 35.6762, lng: 139.6503, name: "Tokyo", elevation: 0 },
+    { lat: 34.6937, lng: 135.5023, name: "Osaka", elevation: 500 },
+    { lat: 35.0116, lng: 135.7681, name: "Kyoto", elevation: 300 },
+    { lat: 35.6762, lng: 139.6503, name: "Tokyo", elevation: 0 },
   ];
 
   it("calculates route metrics correctly", () => {
@@ -16,7 +16,8 @@ describe("routeMetrics", () => {
     // Total should be around 800km
     expect(metrics.distanceKm).toBeCloseTo(800, -2); // Within 100km accuracy
     expect(metrics.durationHours).toBeCloseTo(metrics.distanceKm / 20, 2);
-    expect(metrics.elevationGainMeters).toBe(1200); // Our simulated value
+    // Only positive elevation changes are counted: 0->500 = 500, 500->300 = 0, 300->0 = 0
+    expect(metrics.elevationGainMeters).toBe(500);
     expect(metrics.startPoint).toBe("Tokyo");
     expect(metrics.endPoint).toBe("Tokyo");
   });
@@ -25,19 +26,19 @@ describe("routeMetrics", () => {
     const metrics = calculateRouteMetrics([]);
     expect(metrics.distanceKm).toBe(0);
     expect(metrics.durationHours).toBe(0);
-    expect(metrics.elevationGainMeters).toBe(1200); // Our simulated value
+    expect(metrics.elevationGainMeters).toBe(0); // No elevation gain for empty route
     expect(metrics.startPoint).toBe("N/A");
     expect(metrics.endPoint).toBe("N/A");
   });
 
   it("handles single point route", () => {
     const singlePoint: RoutePoint[] = [
-      { lat: 35.6762, lng: 139.6503, name: "Tokyo" },
+      { lat: 35.6762, lng: 139.6503, name: "Tokyo", elevation: 100 },
     ];
     const metrics = calculateRouteMetrics(singlePoint);
     expect(metrics.distanceKm).toBe(0);
     expect(metrics.durationHours).toBe(0);
-    expect(metrics.elevationGainMeters).toBe(1200); // Our simulated value
+    expect(metrics.elevationGainMeters).toBe(0); // No elevation gain for single point
     expect(metrics.startPoint).toBe("Tokyo");
     expect(metrics.endPoint).toBe("Tokyo");
   });

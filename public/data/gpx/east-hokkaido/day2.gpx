@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>East Hokkaido Tour - Day 2: Lake Akan to Bihoro Pass</name>
+    <desc>Second day of cycling from Lake Akan to Bihoro Pass</desc>
+    <time>2023-06-02T07:30:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 2: Lake Akan to Bihoro Pass</name>
+    <trkseg>
+      <trkpt lat="43.3800" lon="144.0980">
+        <ele>420</ele>
+        <time>2023-06-02T07:30:00Z</time>
+        <name>Lake Akan</name>
+      </trkpt>
+      <trkpt lat="43.4100" lon="144.0800">
+        <ele>450</ele>
+        <time>2023-06-02T08:15:00Z</time>
+      </trkpt>
+      <trkpt lat="43.4500" lon="144.0500">
+        <ele>520</ele>
+        <time>2023-06-02T09:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.5000" lon="144.0200">
+        <ele>650</ele>
+        <time>2023-06-02T11:00:00Z</time>
+      </trkpt>
+      <trkpt lat="43.5500" lon="143.9800">
+        <ele>780</ele>
+        <time>2023-06-02T12:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.6000" lon="143.9500">
+        <ele>525</ele>
+        <time>2023-06-02T14:00:00Z</time>
+      </trkpt>
+      <trkpt lat="43.6500" lon="143.9000">
+        <ele>350</ele>
+        <time>2023-06-02T15:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.7100" lon="143.8500">
+        <ele>525</ele>
+        <time>2023-06-02T16:45:00Z</time>
+        <name>Bihoro Pass</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

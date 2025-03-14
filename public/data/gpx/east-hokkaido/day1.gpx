@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>East Hokkaido Tour - Day 1: Kushiro to Lake Akan</name>
+    <desc>First day of cycling from Kushiro to Lake Akan</desc>
+    <time>2023-06-01T08:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 1: Kushiro to Lake Akan</name>
+    <trkseg>
+      <trkpt lat="42.9752" lon="144.3752">
+        <ele>5</ele>
+        <time>2023-06-01T08:00:00Z</time>
+        <name>Kushiro</name>
+      </trkpt>
+      <trkpt lat="42.9850" lon="144.3600">
+        <ele>10</ele>
+        <time>2023-06-01T08:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.0100" lon="144.3400">
+        <ele>25</ele>
+        <time>2023-06-01T09:15:00Z</time>
+      </trkpt>
+      <trkpt lat="43.0500" lon="144.3000">
+        <ele>50</ele>
+        <time>2023-06-01T10:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.1000" lon="144.2500">
+        <ele>120</ele>
+        <time>2023-06-01T12:00:00Z</time>
+      </trkpt>
+      <trkpt lat="43.2000" lon="144.1500">
+        <ele>250</ele>
+        <time>2023-06-01T14:00:00Z</time>
+      </trkpt>
+      <trkpt lat="43.3800" lon="144.0980">
+        <ele>420</ele>
+        <time>2023-06-01T16:30:00Z</time>
+        <name>Lake Akan</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

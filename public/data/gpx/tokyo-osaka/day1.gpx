@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>Tokyo to Osaka Tour - Day 1: Tokyo to Hakone</name>
+    <desc>First day of cycling from Tokyo to Hakone</desc>
+    <time>2023-07-01T07:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 1: Tokyo to Hakone</name>
+    <trkseg>
+      <trkpt lat="35.6762" lon="139.6503">
+        <ele>40</ele>
+        <time>2023-07-01T07:00:00Z</time>
+        <name>Tokyo</name>
+      </trkpt>
+      <trkpt lat="35.6500" lon="139.6000">
+        <ele>35</ele>
+        <time>2023-07-01T08:00:00Z</time>
+      </trkpt>
+      <trkpt lat="35.6000" lon="139.5500">
+        <ele>50</ele>
+        <time>2023-07-01T09:30:00Z</time>
+      </trkpt>
+      <trkpt lat="35.5500" lon="139.4500">
+        <ele>120</ele>
+        <time>2023-07-01T11:00:00Z</time>
+      </trkpt>
+      <trkpt lat="35.5000" lon="139.3500">
+        <ele>250</ele>
+        <time>2023-07-01T13:00:00Z</time>
+      </trkpt>
+      <trkpt lat="35.4500" lon="139.2500">
+        <ele>450</ele>
+        <time>2023-07-01T15:00:00Z</time>
+      </trkpt>
+      <trkpt lat="35.2324" lon="139.1069">
+        <ele>720</ele>
+        <time>2023-07-01T17:30:00Z</time>
+        <name>Hakone</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

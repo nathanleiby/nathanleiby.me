@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>Tokyo to Osaka Tour - Day 4: Nagoya to Kyoto</name>
+    <desc>Fourth day of cycling from Nagoya to Kyoto</desc>
+    <time>2023-07-04T07:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 4: Nagoya to Kyoto</name>
+    <trkseg>
+      <trkpt lat="35.1815" lon="136.9066">
+        <ele>10</ele>
+        <time>2023-07-04T07:00:00Z</time>
+        <name>Nagoya</name>
+      </trkpt>
+      <trkpt lat="35.1500" lon="136.8000">
+        <ele>15</ele>
+        <time>2023-07-04T08:30:00Z</time>
+      </trkpt>
+      <trkpt lat="35.1000" lon="136.7000">
+        <ele>20</ele>
+        <time>2023-07-04T10:00:00Z</time>
+      </trkpt>
+      <trkpt lat="35.0500" lon="136.6000">
+        <ele>25</ele>
+        <time>2023-07-04T11:30:00Z</time>
+      </trkpt>
+      <trkpt lat="35.0000" lon="136.5000">
+        <ele>30</ele>
+        <time>2023-07-04T13:00:00Z</time>
+      </trkpt>
+      <trkpt lat="34.9500" lon="136.4000">
+        <ele>35</ele>
+        <time>2023-07-04T14:30:00Z</time>
+      </trkpt>
+      <trkpt lat="35.0116" lon="135.7681">
+        <ele>45</ele>
+        <time>2023-07-04T16:00:00Z</time>
+        <name>Kyoto</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>East Hokkaido Tour - Day 6: Rausu to Nakashibetsu</name>
+    <desc>Sixth day of cycling from Rausu to Nakashibetsu</desc>
+    <time>2023-06-06T07:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 6: Rausu to Nakashibetsu</name>
+    <trkseg>
+      <trkpt lat="44.0217" lon="145.1897">
+        <ele>10</ele>
+        <time>2023-06-06T07:00:00Z</time>
+        <name>Rausu</name>
+      </trkpt>
+      <trkpt lat="44.0000" lon="145.1500">
+        <ele>50</ele>
+        <time>2023-06-06T08:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.9500" lon="145.1000">
+        <ele>150</ele>
+        <time>2023-06-06T10:00:00Z</time>
+      </trkpt>
+      <trkpt lat="43.9000" lon="145.0500">
+        <ele>250</ele>
+        <time>2023-06-06T11:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.8500" lon="145.0000">
+        <ele>350</ele>
+        <time>2023-06-06T13:00:00Z</time>
+      </trkpt>
+      <trkpt lat="43.8000" lon="144.9500">
+        <ele>250</ele>
+        <time>2023-06-06T14:30:00Z</time>
+      </trkpt>
+      <trkpt lat="43.5583" lon="144.9667">
+        <ele>70</ele>
+        <time>2023-06-06T16:00:00Z</time>
+        <name>Nakashibetsu</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

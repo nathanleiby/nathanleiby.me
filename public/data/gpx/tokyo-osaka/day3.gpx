@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="nathanleiby.me">
+  <metadata>
+    <name>Tokyo to Osaka Tour - Day 3: Shizuoka to Nagoya</name>
+    <desc>Third day of cycling from Shizuoka to Nagoya</desc>
+    <time>2023-07-03T07:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Day 3: Shizuoka to Nagoya</name>
+    <trkseg>
+      <trkpt lat="34.9756" lon="138.3830">
+        <ele>15</ele>
+        <time>2023-07-03T07:00:00Z</time>
+        <name>Shizuoka</name>
+      </trkpt>
+      <trkpt lat="34.9500" lon="138.3000">
+        <ele>20</ele>
+        <time>2023-07-03T08:30:00Z</time>
+      </trkpt>
+      <trkpt lat="34.9000" lon="138.2000">
+        <ele>25</ele>
+        <time>2023-07-03T10:00:00Z</time>
+      </trkpt>
+      <trkpt lat="34.8500" lon="138.1000">
+        <ele>30</ele>
+        <time>2023-07-03T11:30:00Z</time>
+      </trkpt>
+      <trkpt lat="34.8000" lon="138.0000">
+        <ele>35</ele>
+        <time>2023-07-03T13:00:00Z</time>
+      </trkpt>
+      <trkpt lat="34.7500" lon="137.9000">
+        <ele>40</ele>
+        <time>2023-07-03T14:30:00Z</time>
+      </trkpt>
+      <trkpt lat="35.1815" lon="136.9066">
+        <ele>10</ele>
+        <time>2023-07-03T16:00:00Z</time>
+        <name>Nagoya</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

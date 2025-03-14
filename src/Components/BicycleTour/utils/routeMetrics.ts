@@ -3,6 +3,7 @@ export interface RoutePoint {
   lng: number;
   elevation?: number;
   name?: string;
+  time?: Date;
 }
 
 export interface RouteMetrics {
@@ -55,13 +56,24 @@ function estimateDuration(distanceKm: number): number {
 }
 
 /**
- * Calculates elevation gain in meters (placeholder for now)
- * In a future story, we'll implement actual elevation calculations
+ * Calculates elevation gain in meters
  */
 function calculateElevationGain(route: RoutePoint[]): number {
-  // For now, return a simulated elevation gain
-  // This will be replaced with actual calculations in a future story
-  return 1200; // Simulated elevation gain for Tokyo-Osaka-Kyoto route
+  if (route.length < 2) return 0;
+
+  let gain = 0;
+
+  for (let i = 1; i < route.length; i++) {
+    const prevElevation = route[i - 1].elevation || 0;
+    const currentElevation = route[i].elevation || 0;
+
+    // Only count positive elevation changes
+    if (currentElevation > prevElevation) {
+      gain += currentElevation - prevElevation;
+    }
+  }
+
+  return gain;
 }
 
 /**
