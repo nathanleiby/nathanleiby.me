@@ -41,9 +41,25 @@ npm run test:coverage
 
 ## Deployment
 
-This project can be manually deployed to GitHub Pages using the GitHub Actions workflow.
+This project can be manually deployed to GitHub Pages using either the provided script or directly through GitHub Actions.
 
-To trigger a deployment:
+### Option 1: Using the deployment script (recommended)
+
+Run the deployment script with an optional message:
+
+```bash
+./deploy.sh "Your deployment message"
+```
+
+The script will:
+
+1. Check if GitHub CLI is installed and authenticated
+2. Trigger the deployment workflow with your message
+3. Provide a link to monitor the deployment progress
+
+### Option 2: Using GitHub Actions UI
+
+To trigger a deployment through the GitHub UI:
 
 1. Go to the GitHub repository
 2. Navigate to the "Actions" tab
@@ -52,7 +68,7 @@ To trigger a deployment:
 5. Enter a deployment message (optional)
 6. Click "Run workflow" to start the deployment
 
-Alternatively, you can use the GitHub CLI to trigger the deployment:
+### Option 3: Using GitHub CLI directly
 
 ```bash
 gh workflow run manual-deploy.yml -f deploy_message="Your deployment message"
