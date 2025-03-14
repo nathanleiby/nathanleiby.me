@@ -10,8 +10,13 @@ updates:
     # Check for updates once a week
     schedule:
       interval: "weekly"
+    # Group all updates into one PR
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
     # Allow up to 10 open pull requests for npm dependencies
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 1
     # Add assignees
     assignees:
       - "nathanleiby"
