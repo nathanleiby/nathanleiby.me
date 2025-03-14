@@ -13,8 +13,6 @@ interface TourDescriptionProps {
 // Tour descriptions organized by tour ID
 const tourDescriptions: Record<string, string> = {
   "east-hokkaido": `
-# East Hokkaido Tour: A 6-Day Cycling Adventure
-
 My adventure through Eastern Hokkaido was a perfect blend of stunning landscapes, serene wilderness, and refreshing onsen experiences. Here's how my route unfolded:
 
 - **Starting Point**: Took a train to Shiretoko-Shari
