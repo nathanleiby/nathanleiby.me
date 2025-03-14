@@ -186,7 +186,7 @@ export function BicycleTourPage() {
         <>
           <Grid>
             <Grid.Col span={{ base: 12, md: 8 }}>
-              <Map route={route} />
+              <Map route={route} days={tour?.days} />
             </Grid.Col>
             <Grid.Col span={{ base: 12, md: 4 }}>
               <RouteMetrics metrics={metrics} />

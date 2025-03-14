@@ -1,8 +1,15 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useMemo } from "react";
-import { MapContainer, Polyline, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Polyline,
+  TileLayer,
+  Tooltip,
+} from "react-leaflet";
 import styles from "./Map.module.css";
+import { type DayRoute } from "./utils/gpxParser";
 import { type RoutePoint } from "./utils/routeMetrics";
 
 // Sample route data (Tokyo → Osaka → Kyoto → Tokyo)
@@ -17,6 +24,7 @@ interface MapProps {
   route: RoutePoint[];
   center?: [number, number];
   zoom?: number;
+  days?: DayRoute[];
 }
 
 /**
@@ -71,7 +79,17 @@ function calculateZoomLevel(route: RoutePoint[]): number {
   return 10;
 }
 
-export function Map({ route, center, zoom }: MapProps) {
+// Create custom icons for start, end, and day markers
+const createCustomIcon = (iconUrl: string, iconSize: [number, number]) => {
+  return L.icon({
+    iconUrl,
+    iconSize,
+    iconAnchor: [iconSize[0] / 2, iconSize[1]],
+    popupAnchor: [0, -iconSize[1]],
+  });
+};
+
+export function Map({ route, center, zoom, days }: MapProps) {
   // Calculate center and zoom if not provided
   const calculatedCenter = useMemo(
     () => center || calculateRouteCenter(route),
@@ -87,6 +105,49 @@ export function Map({ route, center, zoom }: MapProps) {
     () => route.map((point) => [point.lat, point.lng] as [number, number]),
     [route]
   );
+
+  // Get start and end points
+  const startPoint = useMemo(
+    () => (route.length > 0 ? route[0] : null),
+    [route]
+  );
+  const endPoint = useMemo(
+    () => (route.length > 0 ? route[route.length - 1] : null),
+    [route]
+  );
+
+  // Create custom icons
+  const startIcon = useMemo(
+    () => createCustomIcon("/images/bicycle-tour/start-marker.png", [32, 32]),
+    []
+  );
+
+  const endIcon = useMemo(
+    () => createCustomIcon("/images/bicycle-tour/end-marker.png", [32, 32]),
+    []
+  );
+
+  // Create day marker icons
+  const dayIcons = useMemo(() => {
+    const icons = [];
+    for (let i = 1; i <= 10; i++) {
+      icons.push(
+        createCustomIcon(`/images/bicycle-tour/day-${i}.png`, [24, 24])
+      );
+    }
+    return icons;
+  }, []);
+
+  // Extract day starting points
+  const dayStartPoints = useMemo(() => {
+    if (!days) return [];
+
+    return days.map((day, index) => ({
+      point: day.points[0],
+      name: day.name,
+      index,
+    }));
+  }, [days]);
 
   // Fix for Leaflet icon paths in production
   useEffect(() => {
@@ -110,6 +171,33 @@ export function Map({ route, center, zoom }: MapProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Polyline positions={routePoints} color="blue" weight={3} opacity={0.7} />
+
+      {/* Start marker */}
+      {startPoint && (
+        <Marker position={[startPoint.lat, startPoint.lng]} icon={startIcon}>
+          <Tooltip permanent>Start</Tooltip>
+        </Marker>
+      )}
+
+      {/* End marker */}
+      {endPoint && (
+        <Marker position={[endPoint.lat, endPoint.lng]} icon={endIcon}>
+          <Tooltip permanent>End</Tooltip>
+        </Marker>
+      )}
+
+      {/* Day markers */}
+      {dayStartPoints.map((dayPoint, index) => (
+        <Marker
+          key={`day-${index + 1}`}
+          position={[dayPoint.point.lat, dayPoint.point.lng]}
+          icon={dayIcons[index % dayIcons.length]}
+        >
+          <Tooltip>
+            Day {index + 1}: {dayPoint.name.split(": ")[1] || dayPoint.name}
+          </Tooltip>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }
