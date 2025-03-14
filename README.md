@@ -41,17 +41,29 @@ npm run test:coverage
 
 ## Deployment
 
-Preview the production build with
+This project can be manually deployed to GitHub Pages using the GitHub Actions workflow.
+
+To trigger a deployment:
+
+1. Go to the GitHub repository
+2. Navigate to the "Actions" tab
+3. Select the "Manual Deploy to GitHub Pages" workflow
+4. Click "Run workflow"
+5. Enter a deployment message (optional)
+6. Click "Run workflow" to start the deployment
+
+Alternatively, you can use the GitHub CLI to trigger the deployment:
 
 ```bash
-npm run preview
+gh workflow run manual-deploy.yml -f deploy_message="Your deployment message"
 ```
 
-Deploy latest to gh pages with
+The deployment process will:
 
-```bash
-npm run predeploy && npm run deploy
-```
+1. Build the project using Vite
+2. Upload the build artifacts
+3. Deploy to GitHub Pages
+4. Provide a URL to the deployed site when complete
 
 ## Technical Details
 
