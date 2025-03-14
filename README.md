@@ -13,6 +13,10 @@ The website includes an interactive bicycle touring section that displays routes
   - Estimated duration based on average cycling speed (20 km/h)
   - Elevation gain tracking
   - Start and end point display
+- Photo gallery:
+  - Responsive grid layout
+  - Photo captions
+  - Optimized image loading
 - Responsive design that works on both desktop and mobile devices
 
 ## Development
@@ -61,3 +65,12 @@ The application calculates route metrics using the following methods:
 - **Route Points**: Stores named locations for start/end point display
 
 The metrics are displayed in a clean card layout using Mantine UI components and Tabler icons.
+
+### Photo Gallery
+
+The photo gallery component provides a visual representation of the bicycle route:
+
+- **Responsive Grid**: Automatically adjusts columns based on screen size
+- **Image Optimization**: Uses optimized images with proper loading states
+- **Captions**: Displays descriptive captions for each photo
+- **Fallback Handling**: Provides fallback images if the main images fail to load
