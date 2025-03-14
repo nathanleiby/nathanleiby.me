@@ -15,58 +15,46 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-// Create start marker (green circle with 'S')
-function createStartMarker() {
-  const canvas = createCanvas(32, 32);
-  const ctx = canvas.getContext("2d");
-
-  // Draw green circle
-  ctx.beginPath();
-  ctx.arc(16, 16, 14, 0, Math.PI * 2);
-  ctx.fillStyle = "#4CAF50";
-  ctx.fill();
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = "white";
-  ctx.stroke();
-
-  // Draw 'S' text
-  ctx.font = "bold 14px Arial";
-  ctx.fillStyle = "white";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("S", 16, 16);
-
-  // Save as PNG
-  const buffer = canvas.toBuffer("image/png");
-  fs.writeFileSync(path.join(outputDir, "start-marker.png"), buffer);
-  console.log("Created start marker");
-}
-
-// Create end marker (red circle with 'E')
+// Create end marker (checkered flag)
 function createEndMarker() {
   const canvas = createCanvas(32, 32);
   const ctx = canvas.getContext("2d");
 
-  // Draw red circle
+  // Draw white background circle
   ctx.beginPath();
   ctx.arc(16, 16, 14, 0, Math.PI * 2);
-  ctx.fillStyle = "#F44336";
+  ctx.fillStyle = "#FFFFFF";
   ctx.fill();
   ctx.lineWidth = 2;
-  ctx.strokeStyle = "white";
+  ctx.strokeStyle = "#333333";
   ctx.stroke();
 
-  // Draw 'E' text
-  ctx.font = "bold 14px Arial";
-  ctx.fillStyle = "white";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("E", 16, 16);
+  // Draw checkered flag pattern
+  const squareSize = 4;
+  const startX = 8;
+  const startY = 8;
+  const flagSize = 16;
+
+  for (let y = 0; y < flagSize / squareSize; y++) {
+    for (let x = 0; x < flagSize / squareSize; x++) {
+      if ((x + y) % 2 === 0) {
+        ctx.fillStyle = "#000000";
+      } else {
+        ctx.fillStyle = "#FFFFFF";
+      }
+      ctx.fillRect(
+        startX + x * squareSize,
+        startY + y * squareSize,
+        squareSize,
+        squareSize
+      );
+    }
+  }
 
   // Save as PNG
   const buffer = canvas.toBuffer("image/png");
   fs.writeFileSync(path.join(outputDir, "end-marker.png"), buffer);
-  console.log("Created end marker");
+  console.log("Created end marker (checkered flag)");
 }
 
 // Create day markers (blue circles with day numbers)
@@ -99,8 +87,7 @@ function createDayMarker(day) {
 // Create all markers
 async function createAllMarkers() {
   try {
-    // Create start and end markers
-    createStartMarker();
+    // Create end marker (checkered flag)
     createEndMarker();
 
     // Create day markers (1-10)

@@ -79,7 +79,7 @@ function calculateZoomLevel(route: RoutePoint[]): number {
   return 10;
 }
 
-// Create custom icons for start, end, and day markers
+// Create custom icons for end and day markers
 const createCustomIcon = (iconUrl: string, iconSize: [number, number]) => {
   return L.icon({
     iconUrl,
@@ -106,22 +106,13 @@ export function Map({ route, center, zoom, days }: MapProps) {
     [route]
   );
 
-  // Get start and end points
-  const startPoint = useMemo(
-    () => (route.length > 0 ? route[0] : null),
-    [route]
-  );
+  // Get end point
   const endPoint = useMemo(
     () => (route.length > 0 ? route[route.length - 1] : null),
     [route]
   );
 
   // Create custom icons
-  const startIcon = useMemo(
-    () => createCustomIcon("/images/bicycle-tour/start-marker.png", [32, 32]),
-    []
-  );
-
   const endIcon = useMemo(
     () => createCustomIcon("/images/bicycle-tour/end-marker.png", [32, 32]),
     []
@@ -172,17 +163,10 @@ export function Map({ route, center, zoom, days }: MapProps) {
       />
       <Polyline positions={routePoints} color="blue" weight={3} opacity={0.7} />
 
-      {/* Start marker */}
-      {startPoint && (
-        <Marker position={[startPoint.lat, startPoint.lng]} icon={startIcon}>
-          <Tooltip permanent>Start</Tooltip>
-        </Marker>
-      )}
-
       {/* End marker */}
       {endPoint && (
         <Marker position={[endPoint.lat, endPoint.lng]} icon={endIcon}>
-          <Tooltip permanent>End</Tooltip>
+          <Tooltip>Finish</Tooltip>
         </Marker>
       )}
 
