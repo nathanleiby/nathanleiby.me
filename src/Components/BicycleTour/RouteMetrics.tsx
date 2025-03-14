@@ -59,7 +59,9 @@ export function RouteMetrics({ metrics }: RouteMetricsProps) {
         </Group>
         <Group gap="xs">
           <IconMountain size={20} />
-          <Text>Elevation Gain: {metrics.elevationGainMeters} m</Text>
+          <Text>
+            Elevation Gain: {Math.round(metrics.elevationGainMeters)} m
+          </Text>
         </Group>
         <Group gap="xs">
           <IconFlag size={20} />
