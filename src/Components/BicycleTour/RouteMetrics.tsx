@@ -63,14 +63,15 @@ export function RouteMetrics({ metrics }: RouteMetricsProps) {
             Elevation Gain: {Math.round(metrics.elevationGainMeters)} m
           </Text>
         </Group>
-        <Group gap="xs" align="flex-start">
-          <IconFlag size={20} style={{ marginTop: "4px" }} />
-          <Text>
-            Route:
-            <br />
+        <Stack gap="xs" ml={0}>
+          <Group gap="xs" wrap="nowrap">
+            <IconFlag size={20} />
+            <Text>Route:</Text>
+          </Group>
+          <Text ml={28}>
             {metrics.startPoint} → {metrics.endPoint}
           </Text>
-        </Group>
+        </Stack>
       </Stack>
     </Card>
   );
