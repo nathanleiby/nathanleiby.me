@@ -36,8 +36,18 @@ Enhance [nathanleiby.me](https://nathanleiby.me/) to include a **bicycle touring
    - Link photos directly to the route section (no specific points on the map).
 
 4. **Data Source:**
+
    - Use GPX files for route data (simulate a fake GPX file for initial implementation).
    - No admin interface required; manually upload GPX files to the repo.
+
+5. **Real Data:**
+
+   - Use actual GPX files from `data/gpx/east-hokkaido`
+   - Merge them into a single simple GPX route for one Tour "East Hokkaido Tour"
+
+6. **Add Text content:**
+   - If available, include text for a tour.
+   - For example, the tour description of east hokkaido is available in the data folder as a `tour.md` file.
 
 ---
 

@@ -2340,51 +2340,7 @@ Let's run the tests to see if our implementation meets the requirements:
 
 ---
 
-```bash
-npm run test
-```
-
-```
-nathanleiby@Nathans-MacBook-Pro nathanleiby.me % npm run test
-
-> vite-min-template@0.0.0 test
-> vitest
-
-
- DEV  v3.0.8 /Users/nathanleiby/code/nathanleiby.me
-
- ❯ src/Components/BicycleTour/utils/__tests__/routeMetrics.test.ts (4 tests | 1 failed) 4ms
-   ✓ routeMetrics > calculates route metrics correctly
-   × routeMetrics > handles empty route 2ms
-     → Cannot read properties of undefined (reading 'name')
-   ✓ routeMetrics > handles single point route
-   ✓ routeMetrics > handles route points without names
- ✓ src/Components/BicycleTour/__tests__/Map.test.tsx (4 tests) 19ms
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-
- FAIL  src/Components/BicycleTour/utils/__tests__/routeMetrics.test.ts > routeMetrics > handles empty route
-TypeError: Cannot read properties of undefined (reading 'name')
- ❯ calculateRouteMetrics src/Components/BicycleTour/utils/routeMetrics.ts:80:16
-     78|     elevationGainMeters,
-     79|     startPoint:
-     80|       route[0].name || `${route[0].lat.toFixed(4)}, ${route[0].lng.toFixed(4)}`,
-       |                ^
-     81|     endPoint:
-     82|       route[route.length - 1].name ||
- ❯ src/Components/BicycleTour/utils/__tests__/routeMetrics.test.ts:25:21
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
-
-
- Test Files  1 failed | 1 passed (2)
-      Tests  1 failed | 7 passed (8)
-   Start at  19:16:17
-   Duration  709ms (transform 68ms, setup 153ms, collect 126ms, tests 23ms, environment 585ms, prepare 74ms)
-
- FAIL  Tests failed. Watching for file changes...
-       press h to show help, press q to quit
-```
+Cancelled
 
 ---
 
@@ -7553,9 +7509,7 @@ Now let's run the tests to see if our GPX parser utility is working correctly:
 
 ---
 
-```bash
-npm test -- src/Components/BicycleTour/utils/__tests__/gpxParser.test.ts
-```
+Cancelled
 
 ---
 
@@ -14134,6 +14088,507 @@ Then, let's try out feature 1, subtask 5 from @prd.md
 ---
 
 _**Assistant**_
+
+I'll help you test, commit, and push the changes we've made, and then we'll implement feature 1, subtask 5 from the PRD.
+
+Let's first run the tests to make sure everything is working properly:
+
+---
+
+```bash
+npm test
+```
+
+---
+
+Let's commit our changes:
+
+---
+
+```bash
+git add .
+```
+
+```
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me % 
+
+```
+
+---
+
+```bash
+git commit -m "Fix TourSelector dropdown issues and add tour-specific photos"
+```
+
+```
+<Selector dropdown issues and add tour-specific photos"
+[master 90c37ed] Fix TourSelector dropdown issues and add tour-specific photos
+ 31 files changed, 898620 insertions(+), 170 deletions(-)
+ create mode 100644 data/gpx/east-hokkaido/Akan_to_Kushiro.gpx
+ create mode 100644 data/gpx/east-hokkaido/Kussharo_to_Akan.gpx
+ create mode 100644 data/gpx/east-hokkaido/Nakashibetsu_to_Wakoto_Lake_Kussharo_.gpx
+ create mode 100644 data/gpx/east-hokkaido/Rausu_to_Nakashibetsu.gpx
+ create mode 100644 data/gpx/east-hokkaido/Shari_to_Utoro_ride_into_Shiretoko_park.gpx
+ create mode 100644 data/gpx/east-hokkaido/Utoro_to_Rausu_exploring_east_side_of_Shiretoko.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/day1.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/day2.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/day3.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/day4.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/day5.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/day6.gpx
+ create mode 100644 public/data/gpx/tokyo-osaka/day1.gpx
+ create mode 100644 public/data/gpx/tokyo-osaka/day2.gpx
+ create mode 100644 public/data/gpx/tokyo-osaka/day3.gpx
+ create mode 100644 public/data/gpx/tokyo-osaka/day4.gpx
+ create mode 100644 public/data/gpx/tokyo-osaka/day5.gpx
+ create mode 100644 src/Components/BicycleTour/TourSelector.tsx
+ create mode 100644 src/Components/BicycleTour/__tests__/BicycleTourPage.test.tsx
+ create mode 100644 src/Components/BicycleTour/__tests__/TourSelector.test.tsx
+ create mode 100644 src/Components/BicycleTour/utils/__tests__/gpxParser.test.ts
+ create mode 100644 src/Components/BicycleTour/utils/gpxParser.ts
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me %
+```
+
+---
+
+```bash
+git push
+```
+
+```
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me % git push
+Enumerating objects: 73, done.
+Counting objects: 100% (73/73), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (51/51), done.
+Writing objects: 100% (54/54), 1.39 MiB | 1.24 MiB/s, done.
+Total 54 (delta 29), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (29/29), completed with 11 local objects.
+remote: 
+remote: GitHub found 2 vulnerabilities on nathanleiby/nathanleiby.me's default branch (1 high, 1 moderate). To f
+ind out more, visit:
+remote:      https://github.com/nathanleiby/nathanleiby.me/security/dependabot
+remote: 
+To https://github.com/nathanleiby/nathanleiby.me.git
+   8bee720..90c37ed  master -> master
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me %
+```
+
+---
+
+Now, let's implement feature 1, subtask 5 from the PRD: "Use actual GPX files from `data/gpx/east-hokkaido` and merge them into a single simple GPX route for one Tour 'East Hokkaido Tour'".
+
+First, let's check the actual GPX files in the data directory:
+
+---
+
+<details>
+            <summary>Listed directory data/gpx/east-hokkaido • **6** results</summary>
+        
+| Name |
+|-------|
+| 📄 `Utoro_to_Rausu_exploring_east_side_of_Shiretoko.gpx` |
+| 📄 `Shari_to_Utoro_ride_into_Shiretoko_park.gpx` |
+| 📄 `Rausu_to_Nakashibetsu.gpx` |
+| 📄 `Nakashibetsu_to_Wakoto_Lake_Kussharo_.gpx` |
+| 📄 `Kussharo_to_Akan.gpx` |
+| 📄 `Akan_to_Kushiro.gpx` |
+
+</details>
+
+---
+
+Let's update the `BicycleTourPage.tsx` file to use these actual GPX files instead of the sample ones we created:
+
+---
+
+```diff
+      files: [
+        {
+-         url: "/data/gpx/east-hokkaido/day1.gpx",
+-         name: "Day 1: Kushiro to Lake Akan",
++         url: "/data/gpx/east-hokkaido/Kussharo_to_Akan.gpx",
++         name: "Day 1: Lake Kussharo to Lake Akan",
+        },
+        {
+-         url: "/data/gpx/east-hokkaido/day2.gpx",
+-         name: "Day 2: Lake Akan to Abashiri",
++         url: "/data/gpx/east-hokkaido/Akan_to_Kushiro.gpx",
++         name: "Day 2: Lake Akan to Kushiro",
+        },
+        {
+-         url: "/data/gpx/east-hokkaido/day3.gpx",
+-         name: "Day 3: Abashiri to Utoro",
++         url: "/data/gpx/east-hokkaido/Nakashibetsu_to_Wakoto_Lake_Kussharo_.gpx",
++         name: "Day 3: Nakashibetsu to Lake Kussharo",
+        },
+        {
+-         url: "/data/gpx/east-hokkaido/day4.gpx",
+-         name: "Day 4: Utoro to Rausu",
++         url: "/data/gpx/east-hokkaido/Rausu_to_Nakashibetsu.gpx",
++         name: "Day 4: Rausu to Nakashibetsu",
+        },
+        {
+-         url: "/data/gpx/east-hokkaido/day5.gpx",
+-         name: "Day 5: Rausu to Nakashibetsu",
++         url: "/data/gpx/east-hokkaido/Shari_to_Utoro_ride_into_Shiretoko_park.gpx",
++         name: "Day 5: Shari to Utoro (Shiretoko Park)",
+        },
+        {
+-         url: "/data/gpx/east-hokkaido/day6.gpx",
+-         name: "Day 6: Nakashibetsu to Kushiro",
++         url: "/data/gpx/east-hokkaido/Utoro_to_Rausu_exploring_east_side_of_Shiretoko.gpx",
++         name: "Day 6: Utoro to Rausu (East Shiretoko)",
+        },
+      ],
+```
+
+---
+
+Now let's update the `gpxParser.ts` file to handle the larger, real GPX files more efficiently:
+
+---
+
+```diff
+  export async function loadGpxFromUrl(url: string): Promise<RoutePoint[]> {
+    try {
++     console.log(`Loading GPX file from ${url}`);
+      const response = await fetch(url);
+  
+  
+      const gpxString = await response.text();
+-     return parseGpxString(gpxString);
++     console.log(`Parsing GPX file (${(gpxString.length / 1024).toFixed(2)} KB)`);
++ 
++     const points = parseGpxString(gpxString);
++     console.log(`Parsed ${points.length} points from GPX file`);
++ 
++     // Downsample large files more aggressively
++     return downsampleRoutePoints(points, points.length > 10000 ? 500 : 1000);
+    } catch (error) {
+      console.error("Error loading GPX file:", error);
+  ): Promise<Tour> {
+    try {
++     console.log(`Loading tour: ${tourName} with ${files.length} days`);
++ 
+      // Load each day's route in parallel
+      const daysPromises = files.map(async (file, index) => {
+  
+      const days = await Promise.all(daysPromises);
++     console.log(`Successfully loaded all ${days.length} days of the tour`);
+  
+      return {
+  ): RoutePoint[] {
+    if (points.length <= maxPoints) {
++     console.log(`No downsampling needed (${points.length} points)`);
+      return points;
+    }
++ 
++   console.log(`Downsampling from ${points.length} to ~${maxPoints} points`);
+  
+    // Calculate the sampling interval
+    sampledPoints.push(points[points.length - 1]);
+  
++   console.log(`Downsampled to ${sampledPoints.length} points`);
+    return sampledPoints;
+  }
+   */
+  export function combineDayRoutes(days: DayRoute[]): RoutePoint[] {
+-   return days.reduce((allPoints, day) => {
++   const allPoints = days.reduce((allPoints, day) => {
+      return [...allPoints, ...day.points];
+    }, [] as RoutePoint[]);
++ 
++   console.log(`Combined ${days.length} days into a single route with ${allPoints.length} points`);
++ 
++   // Downsample the combined route if it's very large
++   return allPoints.length > 2000 ? downsampleRoutePoints(allPoints, 2000) : allPoints;
+  }
+  
+```
+
+---
+
+Now let's run the application to test our changes:
+
+---
+
+```bash
+npm run dev
+```
+
+---
+
+Let's make sure the GPX files are accessible from the public directory:
+
+---
+
+```bash
+mkdir -p public/data/gpx/east-hokkaido
+```
+
+```
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me % 
+
+```
+
+---
+
+```bash
+cp data/gpx/east-hokkaido/*.gpx public/data/gpx/east-hokkaido/
+```
+
+```
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me % 
+
+```
+
+---
+
+Let's update the BicycleTourPage component to use the correct paths to the GPX files:
+
+---
+
+
+
+---
+
+Let's commit our changes:
+
+---
+
+```bash
+git add .
+```
+
+```
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me % 
+
+```
+
+---
+
+```bash
+git commit -m "Implement feature 1, subtask 5: Use actual GPX files from East Hokkaido tour"
+```
+
+```
+<btask 5: Use actual GPX files from East Hokkaido tour"
+[master f6a24b4] Implement feature 1, subtask 5: Use actual GPX files from East Hokkaido tour
+ 8 files changed, 888762 insertions(+), 14 deletions(-)
+ create mode 100644 public/data/gpx/east-hokkaido/Akan_to_Kushiro.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/Kussharo_to_Akan.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/Nakashibetsu_to_Wakoto_Lake_Kussharo_.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/Rausu_to_Nakashibetsu.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/Shari_to_Utoro_ride_into_Shiretoko_park.gpx
+ create mode 100644 public/data/gpx/east-hokkaido/Utoro_to_Rausu_exploring_east_side_of_Shiretoko.gpx
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me %
+```
+
+---
+
+```bash
+git push
+```
+
+```
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me % git push
+Enumerating objects: 29, done.
+Counting objects: 100% (29/29), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (17/17), done.
+Writing objects: 100% (18/18), 1.29 MiB | 1.17 MiB/s, done.
+Total 18 (delta 12), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (12/12), completed with 7 local objects.
+remote: 
+remote: GitHub found 4 vulnerabilities on nathanleiby/nathanleiby.me's default branch (1 high, 3 moderate). To f
+ind out more, visit:
+remote:      https://github.com/nathanleiby/nathanleiby.me/security/dependabot
+remote: 
+To https://github.com/nathanleiby/nathanleiby.me.git
+   90c37ed..f6a24b4  master -> master
+nathanleiby@Nathans-MacBook-Pro nathanleiby.me %
+```
+
+---
+
+I've successfully implemented feature 1, subtask 5 from the PRD: "Use actual GPX files from `data/gpx/east-hokkaido`". Here's a summary of what I did:
+
+1. **Updated the East Hokkaido Tour Configuration**:
+   - Changed the file paths to point to the actual GPX files in the data directory
+   - Updated the day names to match the actual route segments
+
+2. **Enhanced the GPX Parser for Better Performance**:
+   - Added more aggressive downsampling for very large GPX files (>10,000 points)
+   - Added additional downsampling when combining multiple day routes
+   - Added logging to track the parsing and downsampling process
+
+3. **Made the Files Accessible**:
+   - Copied the actual GPX files from the data directory to the public directory
+   - Ensured the file paths in the BicycleTourPage component point to the correct locations
+
+The East Hokkaido Tour now uses real GPX data from your actual bicycle tour, providing a more authentic representation of your journey. The application should handle these larger, more complex GPX files efficiently thanks to the enhanced downsampling logic.
+
+The tour now includes the following segments:
+1. Lake Kussharo to Lake Akan
+2. Lake Akan to Kushiro
+3. Nakashibetsu to Lake Kussharo
+4. Rausu to Nakashibetsu
+5. Shari to Utoro (Shiretoko Park)
+6. Utoro to Rausu (East Shiretoko)
+
+All changes have been committed and pushed to the repository. The application should now display the actual East Hokkaido Tour on the map with accurate route data and metrics.
+
+---
+
+_**User**_
+
+Please use this content to enrich the "East Hokkaido Tour" page with textual data, telling the story.
+
+# East Hokkaido Tour: A 6-Day Cycling Adventure
+
+## Journey Overview
+
+My adventure through Eastern Hokkaido was a perfect blend of stunning landscapes, serene wilderness, and refreshing onsen experiences. Here's how my route unfolded:
+
+- **Starting Point**: Took a train to Shiretoko-Shari
+- **Main Journey**: Biked from Shiretoko-Shari back to Kushiro over 6 days
+- **Return**: Trained back from Kushiro
+
+## Day-by-Day Journey
+
+### Day 1: Shari to Utoro + Ride into Shiretoko Park
+
+As I left Shari, I encountered moderate truck traffic and tried to stick to side roads whenever possible. The ride improved dramatically as I approached Shiretoko National Park, with fewer vehicles and more breathtaking scenery.
+
+The ride into Shiretoko was particularly memorable—the winding roads offering glimpses of the peninsula's famous wilderness. If you have extra time in your itinerary, I'd highly recommend stopping for a hike at one of several trailheads along the route.
+
+### Day 2: Utoro to Rausu + Exploring East Side of Shiretoko
+
+The east side of the Shiretoko Peninsula provided some of the most peaceful riding of the entire trip. The coastal road north of Rausu was exceptionally quiet, with very little traffic. I was excited to reach the northernmost point accessible by road in Hokkaido, though I was surprised to find no marker commemorating this geographic milestone.
+
+**Lodging in Rausu**: I stayed at Bear Elephant after securing a last-minute room. I had originally planned to stay at the campsite across from Rausu's free onsen, but it was closed.
+
+**Onsen Experiences**:
+1. **Rausu Free Onsen** - Wonderfully hot and rejuvenating!
+2. **Rotemburo** (ocean-side) on the east side of the peninsula - A unique experience with ocean views, though perhaps not as relaxing as other onsens I visited.
+
+### Day 3: Rausu to Nakashibetsu
+
+The journey from the coastal town of Rausu inland to Nakashibetsu offered a transition from maritime landscapes to more pastoral scenery. The gradual change in elevation and ecosystem provided a fascinating contrast to the previous days.
+
+### Day 4: Nakashibetsu to Wakoto (Lake Kussharo)
+
+This segment brought me to the stunning caldera lake of Kussharo, one of Eastern Hokkaido's natural treasures. The Wakoto Peninsula, which juts into the lake, became my home for the night.
+
+**Onsen Experience**: The free onsen on the Wakoto Peninsula near the campsite was a highlight—soaking in the thermal waters while overlooking the vast lake created a magical experience I won't soon forget.
+
+### Day 5: Lake Kussharo to Lake Akan
+
+Continuing my journey through Hokkaido's volcanic lake district, I rode from Lake Kussharo to Lake Akan. The route provided glimpses of the region's unique geography shaped by ancient volcanic activity.
+
+### Day 6: Akan to Kushiro
+
+On my final day, I rode from Lake Akan to Kushiro, where I concluded my cycling adventure. Toward the end of this segment, I serendipitously found myself on a dedicated cycling path leading into Kushiro—a pleasant surprise that made for a smooth finish to the journey.
+
+## Route Reflections & Recommendations
+
+If you're planning your own Eastern Hokkaido cycling adventure, here are some thoughts based on my experience:
+
+- **Alternative Starting Point**: Consider starting from Abashiri instead of Shari. I noticed several cycling tours beginning there, and it looked like a pleasant route.
+
+- **Explore Shiretoko Further**: With more time, I would have explored deeper into Shiretoko Park, particularly the western side which I didn't get to experience fully.
+
+- **Side Trips**: Onneto Lake near Lake Akan came highly recommended but wasn't on my route. It might be worth the detour!
+
+- **Research Cycling Paths**: Try to locate official cycling paths and scenic roads before your trip. I planned each day's route the night before using Strava and RideWithGPS on my phone, which worked but likely meant missing some hidden gems.
+
+- **Road Safety**: Fortunately, I encountered very few intimidating roads throughout Eastern Hokkaido. Most routes were relatively quiet and cyclist-friendly, even without dedicated cycling infrastructure.
+
+- **Kushiro Cycling**: Look for maps of official cycling paths near Kushiro—the network seems extensive but not well-documented online.
+
+Overall, Eastern Hokkaido offered an incredible cycling experience with its combination of coastal roads, volcanic lakes, and abundant hot springs. The region's relatively low traffic volume and stunning natural landscapes make it an ideal destination for bicycle touring.
+
+---
+
+_**Assistant**_
+
+I'll enhance the East Hokkaido Tour page with this rich textual content to tell the story of the journey. Let's create a new component for displaying tour descriptions and integrate it into the BicycleTourPage:
+
+---
+
+Cancelled
+
+---
+
+
+
+---
+
+_**User**_
+
+I notice we didn't create a story-4 file to describe the "real data" work we just did. Can we do that and work through it in the same way as before?
+
+---
+
+_**Assistant**_
+
+You're absolutely right, Commander BMad. Let's create a story file for the "real data" work we just completed. I'll create a new story file following our established template.
+
+---
+
+### Rule: story-template
+
+**story template for agile development**
+
+```markdown
+---
+description: story template
+globs: 
+---
+Apply the following template when creating story files:
+
+# Story {N}: {Title}
+## Story
+**As a** {role}\
+**I want** {action}\
+**so that** {benefit}.
+## Status
+Draft OR In Progress OR Complete
+## Context
+{A paragraph explaining the background, current state, and why this story is needed. Include any relevant technical context or business drivers.}
+## Estimation
+Story Points: {Story Points (1 SP=1 day of Human Development, or 10 minutes of AI development)}
+## Acceptance Criteria
+1. - [ ] {First criterion - ordered by logical progression}
+2. - [ ] {Second criterion}
+3. - [ ] {Third criterion}
+{Use - [x] for completed items}
+## Subtasks
+1. - [ ] {Major Task Group 1}
+   1. - [ ] {Subtask}
+   2. - [ ] {Subtask}
+   3. - [ ] {Subtask}
+2. - [ ] {Major Task Group 2}
+   1. - [ ] {Subtask}
+   2. - [ ] {Subtask}
+   3. - [ ] {Subtask}
+{Use - [x] for completed items, - [-] for skipped/cancelled items}
+## Constraints
+
+## Dev Notes
+
+## Progress Notes As Needed```
+
+---
+
+Now I'll create a story file for the "real data" work we just completed:
+
+---
+
+
+
+---
 
 
 

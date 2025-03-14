@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { Map } from "./Map";
 import { PhotoGallery, type Photo } from "./PhotoGallery";
 import { RouteMetrics } from "./RouteMetrics";
+import { TourDescription } from "./TourDescription";
 import { TourSelector, type TourOption } from "./TourSelector";
 import { combineDayRoutes, loadTour, type Tour } from "./utils/gpxParser";
 import { calculateRouteMetrics, type RoutePoint } from "./utils/routeMetrics";
@@ -191,6 +192,10 @@ export function BicycleTourPage() {
               <RouteMetrics metrics={metrics} />
             </Grid.Col>
           </Grid>
+
+          <Space h="xl" />
+
+          <TourDescription tourId={selectedTour} />
 
           <Space h="xl" />
 
