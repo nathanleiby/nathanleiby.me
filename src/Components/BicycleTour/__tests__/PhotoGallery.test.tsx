@@ -19,9 +19,9 @@ describe("PhotoGallery", () => {
   it("renders all photos with captions", () => {
     render(<PhotoGallery photos={samplePhotos} />);
 
-    // Check if all images are rendered
-    const images = screen.getAllByRole("img");
-    expect(images).toHaveLength(2);
+    // Check if all skeletons are initially rendered
+    const skeletons = document.querySelectorAll(".mantine-Skeleton-root");
+    expect(skeletons.length).toBe(2);
 
     // Check if all captions are displayed
     expect(screen.getByText("Starting point: Tokyo")).toBeInTheDocument();
@@ -32,15 +32,17 @@ describe("PhotoGallery", () => {
     const singlePhoto = [samplePhotos[0]];
     render(<PhotoGallery photos={singlePhoto} />);
 
-    const images = screen.getAllByRole("img");
-    expect(images).toHaveLength(1);
+    // Check if skeleton is rendered
+    const skeletons = document.querySelectorAll(".mantine-Skeleton-root");
+    expect(skeletons.length).toBe(1);
+
     expect(screen.getByText("Starting point: Tokyo")).toBeInTheDocument();
   });
 
   it("handles empty photo array", () => {
     render(<PhotoGallery photos={[]} />);
 
-    const images = screen.queryAllByRole("img");
-    expect(images).toHaveLength(0);
+    const skeletons = document.querySelectorAll(".mantine-Skeleton-root");
+    expect(skeletons.length).toBe(0);
   });
 });
