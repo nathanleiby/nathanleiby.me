@@ -2,6 +2,7 @@ import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { Route, Router } from "wouter";
 import { About } from "./Components/About";
+import { BicycleTourPage } from "./Components/BicycleTour/BicycleTourPage";
 import { Footer } from "./Components/Footer";
 import { Header } from "./Components/Header";
 import { Projects } from "./Components/Projects";
@@ -24,6 +25,9 @@ export default function App() {
         </Route>
         <Route path="/travel">
           <Travel />
+        </Route>
+        <Route path="/bicycle-tours">
+          <BicycleTourPage />
         </Route>
         <Route path="/writing">
           <Writing />
