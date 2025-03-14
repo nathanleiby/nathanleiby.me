@@ -19,11 +19,27 @@ vi.mock("leaflet", () => ({
 
 // Mock react-leaflet components
 vi.mock("react-leaflet", () => ({
-  MapContainer: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="map-container">{children}</div>
+  MapContainer: ({
+    children,
+    center,
+    zoom,
+  }: {
+    children: React.ReactNode;
+    center: [number, number];
+    zoom: number;
+  }) => (
+    <div
+      data-testid="map-container"
+      data-center={JSON.stringify(center)}
+      data-zoom={zoom}
+    >
+      {children}
+    </div>
   ),
   TileLayer: () => <div data-testid="tile-layer" />,
-  Polyline: () => <div data-testid="polyline" />,
+  Polyline: ({ positions }: { positions: [number, number][] }) => (
+    <div data-testid="polyline" data-positions={JSON.stringify(positions)} />
+  ),
 }));
 
 describe("Map", () => {
@@ -32,9 +48,24 @@ describe("Map", () => {
     { lat: 34.6937, lng: 135.5023 }, // Osaka
   ];
 
-  it("renders map container with default props", () => {
+  it("renders map container with auto-calculated center", () => {
     render(<Map route={sampleRoute} />);
-    expect(screen.getByTestId("map-container")).toBeInTheDocument();
+    const mapContainer = screen.getByTestId("map-container");
+    expect(mapContainer).toBeInTheDocument();
+
+    // Check that center is calculated as average of route points
+    const centerAttr = mapContainer.getAttribute("data-center");
+    expect(centerAttr).not.toBeNull();
+
+    if (centerAttr) {
+      const center = JSON.parse(centerAttr);
+      // Expected center: average of Tokyo and Osaka coordinates
+      const expectedLat = (35.6762 + 34.6937) / 2;
+      const expectedLng = (139.6503 + 135.5023) / 2;
+
+      expect(center[0]).toBeCloseTo(expectedLat, 4);
+      expect(center[1]).toBeCloseTo(expectedLng, 4);
+    }
   });
 
   it("renders tile layer", () => {
@@ -42,15 +73,61 @@ describe("Map", () => {
     expect(screen.getByTestId("tile-layer")).toBeInTheDocument();
   });
 
-  it("renders route polyline", () => {
+  it("renders route polyline with correct positions", () => {
     render(<Map route={sampleRoute} />);
-    expect(screen.getByTestId("polyline")).toBeInTheDocument();
+    const polyline = screen.getByTestId("polyline");
+    expect(polyline).toBeInTheDocument();
+
+    const positionsAttr = polyline.getAttribute("data-positions");
+    expect(positionsAttr).not.toBeNull();
+
+    if (positionsAttr) {
+      const positions = JSON.parse(positionsAttr);
+      expect(positions).toHaveLength(2);
+      expect(positions[0][0]).toBeCloseTo(35.6762);
+      expect(positions[0][1]).toBeCloseTo(139.6503);
+      expect(positions[1][0]).toBeCloseTo(34.6937);
+      expect(positions[1][1]).toBeCloseTo(135.5023);
+    }
   });
 
-  it("accepts custom center and zoom props", () => {
+  it("accepts and prioritizes custom center and zoom props", () => {
     const customCenter: [number, number] = [35.0116, 135.7681]; // Kyoto
     const customZoom = 12;
     render(<Map route={sampleRoute} center={customCenter} zoom={customZoom} />);
-    expect(screen.getByTestId("map-container")).toBeInTheDocument();
+
+    const mapContainer = screen.getByTestId("map-container");
+    expect(mapContainer).toBeInTheDocument();
+
+    const centerAttr = mapContainer.getAttribute("data-center");
+    const zoomAttr = mapContainer.getAttribute("data-zoom");
+
+    expect(centerAttr).not.toBeNull();
+    expect(zoomAttr).not.toBeNull();
+
+    if (centerAttr && zoomAttr) {
+      const center = JSON.parse(centerAttr);
+      const zoom = parseInt(zoomAttr, 10);
+
+      expect(center[0]).toBeCloseTo(customCenter[0]);
+      expect(center[1]).toBeCloseTo(customCenter[1]);
+      expect(zoom).toBe(customZoom);
+    }
+  });
+
+  it("handles empty route gracefully", () => {
+    render(<Map route={[]} />);
+    const mapContainer = screen.getByTestId("map-container");
+    expect(mapContainer).toBeInTheDocument();
+
+    // Should default to Tokyo coordinates
+    const centerAttr = mapContainer.getAttribute("data-center");
+    expect(centerAttr).not.toBeNull();
+
+    if (centerAttr) {
+      const center = JSON.parse(centerAttr);
+      expect(center[0]).toBeCloseTo(35.6762);
+      expect(center[1]).toBeCloseTo(139.6503);
+    }
   });
 });
