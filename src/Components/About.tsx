@@ -21,7 +21,7 @@ export function About() {
       <Text mt="xl">
         See my{" "}
         <a
-          href="https://gist.github.com/nathanleiby/8bf2cea81d46a81fa5db7e01cf009943"
+          href="https://resume.nathanleiby.me"
           target="_"
         >
           resume
