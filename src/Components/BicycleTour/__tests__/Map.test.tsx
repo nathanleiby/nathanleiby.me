@@ -1,25 +1,53 @@
 import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
+import type { ReactNode } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import Map from "../Map";
 
+interface MockMapContainerProps {
+  children: ReactNode;
+  center: [number, number];
+  zoom: number;
+}
+
+interface MockTileLayerProps {
+  url: string;
+}
+
+interface MockPolylineProps {
+  positions: [number, number][];
+}
+
+interface MockMarkerProps {
+  position: [number, number];
+  children: ReactNode;
+}
+
+interface MockTooltipProps {
+  children: ReactNode;
+}
+
 // Mock Leaflet components
 vi.mock("react-leaflet", () => ({
-  MapContainer: ({ children, center, zoom }: any) => (
+  MapContainer: ({ children, center, zoom }: MockMapContainerProps) => (
     <div data-testid="map-container" data-center={center} data-zoom={zoom}>
       {children}
     </div>
   ),
-  TileLayer: ({ url }: any) => <div data-testid="tile-layer" data-url={url} />,
-  Polyline: ({ positions }: any) => (
+  TileLayer: ({ url }: MockTileLayerProps) => (
+    <div data-testid="tile-layer" data-url={url} />
+  ),
+  Polyline: ({ positions }: MockPolylineProps) => (
     <div data-testid="polyline" data-positions={JSON.stringify(positions)} />
   ),
-  Marker: ({ position, children }: any) => (
+  Marker: ({ position, children }: MockMarkerProps) => (
     <div data-testid="marker" data-position={JSON.stringify(position)}>
       {children}
     </div>
   ),
-  Tooltip: ({ children }: any) => <div data-testid="tooltip">{children}</div>,
+  Tooltip: ({ children }: MockTooltipProps) => (
+    <div data-testid="tooltip">{children}</div>
+  ),
 }));
 
 // Mock Leaflet library

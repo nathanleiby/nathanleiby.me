@@ -16,7 +16,8 @@ global.fetch = vi.fn();
 
 // Mock DOMParser for tests
 class MockDOMParser {
-  parseFromString(str: string, type: string) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  parseFromString(str: string, _type: string) {
     // For invalid XML, return a document with a parsererror element
     if (str === "<invalid>xml</invalid>") {
       return {
