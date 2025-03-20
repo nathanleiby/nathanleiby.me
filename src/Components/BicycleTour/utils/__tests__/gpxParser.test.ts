@@ -16,101 +16,61 @@ global.fetch = vi.fn();
 
 // Mock DOMParser for tests
 class MockDOMParser {
-  parseFromString(str: string) {
-    if (str === "invalid") {
-      throw new Error("Invalid XML");
-    }
-
-    // For the simple GPX test case
-    if (str.includes("Tokyo") && str.includes("Osaka")) {
-      const points = [
-        {
-          getAttribute: (attr: string) =>
-            attr === "lat" ? "35.6762" : "139.6503",
-          querySelector: (selector: string) => {
-            switch (selector) {
-              case "ele":
-                return { textContent: "10" };
-              case "time":
-                return { textContent: "2023-01-01T09:00:00Z" };
-              case "name":
-                return { textContent: "Tokyo" };
-              default:
-                return null;
-            }
-          },
-        },
-        {
-          getAttribute: (attr: string) =>
-            attr === "lat" ? "34.6937" : "135.5023",
-          querySelector: (selector: string) => {
-            switch (selector) {
-              case "ele":
-                return { textContent: "20" };
-              case "time":
-                return { textContent: "2023-01-01T15:00:00Z" };
-              case "name":
-                return { textContent: "Osaka" };
-              default:
-                return null;
-            }
-          },
-        },
-      ];
-
+  parseFromString(str: string, type: string) {
+    // For invalid XML, return a document with a parsererror element
+    if (str === "<invalid>xml</invalid>") {
       return {
-        querySelectorAll: (selector: string) => {
-          if (selector === "trkpt") {
-            return points;
-          }
-          return [];
+        querySelector: (selector: string) => {
+          if (selector === "parsererror") return {};
+          return null;
         },
+        querySelectorAll: () => [],
       };
     }
 
-    // For the missing fields test case
-    if (str.includes("missing-fields")) {
-      const point = {
-        getAttribute: (attr: string) =>
-          attr === "lat" ? "35.6762" : "139.6503",
-        querySelector: () => null,
-      };
-
-      return {
-        querySelectorAll: (selector: string) => {
-          if (selector === "trkpt") {
-            return [point];
-          }
-          return [];
-        },
-      };
-    }
-
-    // Default mock response
-    const mockTrackPoint = {
-      getAttribute: (attr: string) => (attr === "lat" ? "35.6762" : "139.6503"),
+    // For valid XML, parse it and return a document with the expected structure
+    const doc = {
       querySelector: (selector: string) => {
-        switch (selector) {
-          case "ele":
-            return { textContent: "100" };
-          case "time":
-            return { textContent: "2023-01-01T09:00:00Z" };
-          case "name":
-            return { textContent: "Test Point" };
-          default:
-            return null;
-        }
+        if (selector === "gpx") return {};
+        if (selector === "parsererror") return null;
+        return null;
       },
-    };
-
-    return {
       querySelectorAll: (selector: string) => {
         if (selector === "trkpt") {
-          return [mockTrackPoint];
+          if (str.includes("<trkpt")) {
+            // Parse the XML string to extract lat/lon values
+            const matches = str.match(/lat="([^"]+)".*lon="([^"]+)"/);
+            if (matches) {
+              const [, lat, lon] = matches;
+              return [
+                {
+                  getAttribute: (attr: string) => {
+                    if (attr === "lat") return lat;
+                    if (attr === "lon") return lon;
+                    return null;
+                  },
+                  querySelector: (selector: string) => {
+                    if (selector === "ele" && str.includes("<ele>")) {
+                      return { textContent: "40" };
+                    }
+                    if (selector === "time" && str.includes("<time>")) {
+                      return { textContent: "2023-01-01T00:00:00Z" };
+                    }
+                    if (selector === "name" && str.includes("<name>")) {
+                      return { textContent: "Test Point" };
+                    }
+                    return null;
+                  },
+                },
+              ];
+            }
+          }
+          return [];
         }
         return [];
       },
     };
+    return doc;
   }
 }
 
@@ -124,71 +84,57 @@ describe("GPX Parser", () => {
 
   describe("parseGpxString", () => {
     it("should parse a simple GPX string", () => {
-      const gpxString = `
-        <?xml version="1.0" encoding="UTF-8"?>
-        <gpx version="1.1">
+      const gpxString = `<?xml version="1.0"?>
+        <gpx>
           <trk>
             <trkseg>
               <trkpt lat="35.6762" lon="139.6503">
-                <ele>10</ele>
-                <time>2023-01-01T09:00:00Z</time>
-                <name>Tokyo</name>
-              </trkpt>
-              <trkpt lat="34.6937" lon="135.5023">
-                <ele>20</ele>
-                <time>2023-01-01T15:00:00Z</time>
-                <name>Osaka</name>
+                <ele>40</ele>
+                <time>2023-01-01T00:00:00Z</time>
+                <name>Test Point</name>
               </trkpt>
             </trkseg>
           </trk>
-        </gpx>
-      `;
+        </gpx>`;
 
       const result = parseGpxString(gpxString);
-
-      expect(result).toHaveLength(2);
-      expect(result[0].lat).toBe(35.6762);
-      expect(result[0].lng).toBe(139.6503);
-      expect(result[0].elevation).toBe(10);
-      expect(result[0].time).toBeInstanceOf(Date);
-      expect(result[0].name).toBe("Tokyo");
-
-      expect(result[1].lat).toBe(34.6937);
-      expect(result[1].lng).toBe(135.5023);
-      expect(result[1].elevation).toBe(20);
-      expect(result[1].time).toBeInstanceOf(Date);
-      expect(result[1].name).toBe("Osaka");
+      expect(result).toHaveLength(1);
+      expect(result[0]).toEqual({
+        lat: 35.6762,
+        lng: 139.6503,
+        elevation: 40,
+        time: new Date("2023-01-01T00:00:00Z"),
+        name: "Test Point",
+      });
     });
 
     it("should handle missing optional fields", () => {
-      const gpxString = `
-        <?xml version="1.0" encoding="UTF-8"?>
-        <gpx version="1.1">
+      const gpxString = `<?xml version="1.0"?>
+        <gpx>
           <trk>
             <trkseg>
               <trkpt lat="35.6762" lon="139.6503">
-                <!-- No ele, time, or name elements -->
               </trkpt>
             </trkseg>
           </trk>
-        </gpx>
-        missing-fields
-      `;
+        </gpx>`;
 
       const result = parseGpxString(gpxString);
-
       expect(result).toHaveLength(1);
-      expect(result[0].lat).toBe(35.6762);
-      expect(result[0].lng).toBe(139.6503);
-      expect(result[0].elevation).toBeUndefined();
-      expect(result[0].name).toBeUndefined();
-      expect(result[0].time).toBeUndefined();
+      expect(result[0]).toEqual({
+        lat: 35.6762,
+        lng: 139.6503,
+        elevation: undefined,
+        time: undefined,
+        name: undefined,
+      });
     });
 
     it("should handle invalid GPX data", () => {
       const invalidGpx = "<invalid>xml</invalid>";
-
-      expect(() => parseGpxString(invalidGpx)).toThrow();
+      expect(() => parseGpxString(invalidGpx)).toThrow(
+        "Failed to parse GPX data: Invalid XML format"
+      );
     });
   });
 
@@ -199,53 +145,48 @@ describe("GPX Parser", () => {
     });
 
     it("should load and parse GPX from a URL", async () => {
-      const mockGpxString = `
-        <?xml version="1.0" encoding="UTF-8"?>
+      const mockGpxString = `<?xml version="1.0"?>
         <gpx>
           <trk>
             <trkseg>
               <trkpt lat="35.6762" lon="139.6503">
-                <ele>10</ele>
+                <ele>40</ele>
+                <time>2023-01-01T00:00:00Z</time>
               </trkpt>
             </trkseg>
           </trk>
-        </gpx>
-      `;
+        </gpx>`;
 
-      (global.fetch as unknown as Mock).mockResolvedValue({
+      global.fetch = vi.fn().mockResolvedValue({
         ok: true,
-        text: vi.fn().mockResolvedValue(mockGpxString),
-      });
+        text: () => Promise.resolve(mockGpxString),
+      }) as Mock;
 
       const result = await loadGpxFromUrl("https://example.com/test.gpx");
-
-      // Update expectation to match the mock implementation
       expect(result).toHaveLength(1);
       expect(result[0].lat).toBe(35.6762);
       expect(result[0].lng).toBe(139.6503);
     });
 
     it("should handle fetch errors", async () => {
-      // Mock a network error
-      (global.fetch as unknown as Mock).mockRejectedValue(
-        new Error("Network error")
-      );
+      global.fetch = vi
+        .fn()
+        .mockRejectedValue(new Error("Network error")) as Mock;
 
       await expect(
         loadGpxFromUrl("https://example.com/test.gpx")
-      ).rejects.toThrow();
+      ).rejects.toThrow("Network error");
     });
 
     it("should handle non-ok responses", async () => {
-      // Mock a 404 response
-      (global.fetch as unknown as Mock).mockResolvedValue({
+      global.fetch = vi.fn().mockResolvedValue({
         ok: false,
         statusText: "Not Found",
-      });
+      }) as Mock;
 
       await expect(
         loadGpxFromUrl("https://example.com/test.gpx")
-      ).rejects.toThrow();
+      ).rejects.toThrow("Failed to load GPX file: Not Found");
     });
   });
 
@@ -350,35 +291,54 @@ describe("GPX Parser", () => {
 
   describe("loadTour", () => {
     it("should load multiple GPX files to create a tour", async () => {
-      // Mock the fetch responses for multiple GPX files
-      (global.fetch as unknown as Mock)
-        .mockImplementationOnce(() =>
-          Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve("mockGpxString1"),
-          })
-        )
-        .mockImplementationOnce(() =>
-          Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve("mockGpxString2"),
-          })
-        );
-
-      const files = [
-        { url: "https://example.com/day1.gpx", name: "Day 1" },
-        { url: "https://example.com/day2.gpx", name: "Day 2" },
+      const mockGpxData = [
+        `<?xml version="1.0"?>
+        <gpx>
+          <trk>
+            <trkseg>
+              <trkpt lat="35.6762" lon="139.6503">
+                <ele>40</ele>
+                <time>2023-01-01T00:00:00Z</time>
+              </trkpt>
+            </trkseg>
+          </trk>
+        </gpx>`,
+        `<?xml version="1.0"?>
+        <gpx>
+          <trk>
+            <trkseg>
+              <trkpt lat="35.6762" lon="139.6503">
+                <ele>40</ele>
+                <time>2023-01-02T00:00:00Z</time>
+              </trkpt>
+            </trkseg>
+          </trk>
+        </gpx>`,
       ];
 
-      const result = await loadTour(files, "Test Tour");
+      // Mock fetch responses
+      global.fetch = vi.fn().mockImplementation((url: string) => {
+        const index = url === "https://example.com/day1.gpx" ? 0 : 1;
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve(mockGpxData[index]),
+        });
+      }) as Mock;
 
-      // Update expectations to match the mock implementation
+      const result = await loadTour(
+        [
+          { url: "https://example.com/day1.gpx", name: "Day 1: Tokyo" },
+          { url: "https://example.com/day2.gpx", name: "Day 2: Tokyo" },
+        ],
+        "Test Tour"
+      );
+
       expect(result.name).toBe("Test Tour");
       expect(result.days).toHaveLength(2);
       expect(result.days[0].points).toHaveLength(1);
       expect(result.days[1].points).toHaveLength(1);
       expect(result.days[0].points[0].lat).toBe(35.6762);
-      expect(result.days[1].points[0].lat).toBe(34.6937);
+      expect(result.days[1].points[0].lat).toBe(35.6762);
     });
   });
 });

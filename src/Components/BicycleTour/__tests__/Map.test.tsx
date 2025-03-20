@@ -3,43 +3,41 @@ import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import Map from "../Map";
 
-interface MockMapProps {
-  center: { lat: number; lng: number };
-  zoom: number;
-  children?: React.ReactNode;
-}
-
-interface MockMarkerProps {
-  position: { lat: number; lng: number };
-  children?: React.ReactNode;
-}
-
-interface MockPolylineProps {
-  path: Array<{ lat: number; lng: number }>;
-  options?: {
-    strokeColor?: string;
-    strokeWeight?: number;
-  };
-}
-
-// Mock the GoogleMap component
-vi.mock("@react-google-maps/api", () => ({
-  GoogleMap: ({ children, ...props }: MockMapProps) => (
-    <div data-testid="map" {...props}>
+// Mock Leaflet components
+vi.mock("react-leaflet", () => ({
+  MapContainer: ({ children, center, zoom }: any) => (
+    <div data-testid="map-container" data-center={center} data-zoom={zoom}>
       {children}
     </div>
   ),
-  Marker: ({ children, ...props }: MockMarkerProps) => (
-    <div data-testid="marker" {...props}>
+  TileLayer: ({ url }: any) => <div data-testid="tile-layer" data-url={url} />,
+  Polyline: ({ positions }: any) => (
+    <div data-testid="polyline" data-positions={JSON.stringify(positions)} />
+  ),
+  Marker: ({ position, children }: any) => (
+    <div data-testid="marker" data-position={JSON.stringify(position)}>
       {children}
     </div>
   ),
-  Polyline: (props: MockPolylineProps) => (
-    <div data-testid="polyline" {...props} />
-  ),
-  InfoWindow: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="info-window">{children}</div>
-  ),
+  Tooltip: ({ children }: any) => <div data-testid="tooltip">{children}</div>,
+}));
+
+// Mock Leaflet library
+vi.mock("leaflet", () => ({
+  default: {
+    icon: vi.fn(() => ({
+      iconUrl: "",
+      iconSize: [0, 0],
+      iconAnchor: [0, 0],
+      popupAnchor: [0, 0],
+    })),
+    Icon: {
+      Default: {
+        prototype: {},
+        mergeOptions: vi.fn(),
+      },
+    },
+  },
 }));
 
 describe("Map", () => {

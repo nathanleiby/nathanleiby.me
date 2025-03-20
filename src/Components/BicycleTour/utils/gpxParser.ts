@@ -28,8 +28,23 @@ export function parseGpxString(gpxString: string): RoutePoint[] {
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(gpxString, "text/xml");
 
+    // Check for parsing errors
+    const parserError = xmlDoc.querySelector("parsererror");
+    if (parserError) {
+      throw new Error("Invalid XML format");
+    }
+
+    // Validate that this is a GPX document
+    const gpxElement = xmlDoc.querySelector("gpx");
+    if (!gpxElement) {
+      throw new Error("Not a GPX document");
+    }
+
     // Extract track points from the GPX
     const trackPoints = Array.from(xmlDoc.querySelectorAll("trkpt"));
+    if (trackPoints.length === 0) {
+      throw new Error("No track points found");
+    }
 
     // Convert track points to RoutePoint objects
     return trackPoints.map((point) => {
@@ -56,9 +71,10 @@ export function parseGpxString(gpxString: string): RoutePoint[] {
 
       return { lat, lng, elevation, time, name };
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error parsing GPX string:", error);
-    throw new Error(`Failed to parse GPX data: ${error}`);
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to parse GPX data: ${message}`);
   }
 }
 
