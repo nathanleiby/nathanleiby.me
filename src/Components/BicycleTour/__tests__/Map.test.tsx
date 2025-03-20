@@ -1,78 +1,51 @@
 import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { Map } from "../Map";
+import Map from "../Map";
 
-// Mock react-leaflet components
-vi.mock("react-leaflet", () => {
-  return {
-    MapContainer: ({ children, center, zoom, className }: any) => (
-      <div
-        data-testid="map-container"
-        data-center={center}
-        data-zoom={zoom}
-        className={className}
-      >
-        {children}
-      </div>
-    ),
-    TileLayer: ({ url, attribution }: any) => (
-      <div
-        data-testid="tile-layer"
-        data-url={url}
-        data-attribution={attribution}
-      ></div>
-    ),
-    Polyline: ({ positions, color, weight, opacity }: any) => (
-      <div
-        data-testid="polyline"
-        data-positions={JSON.stringify(positions)}
-        data-color={color}
-        data-weight={weight}
-        data-opacity={opacity}
-      ></div>
-    ),
-    Marker: ({ position, children }: any) => (
-      <div data-testid="marker" data-position={JSON.stringify(position)}>
-        {children}
-      </div>
-    ),
-    Tooltip: ({ children }: any) => <div data-testid="tooltip">{children}</div>,
-  };
-});
+interface MockMapProps {
+  center: { lat: number; lng: number };
+  zoom: number;
+  children?: React.ReactNode;
+}
 
-// Mock leaflet
-vi.mock("leaflet", () => {
-  return {
-    default: {
-      icon: vi.fn(),
-      Icon: {
-        Default: {
-          prototype: {
-            _getIconUrl: {},
-          },
-          mergeOptions: vi.fn(),
-        },
-      },
-    },
+interface MockMarkerProps {
+  position: { lat: number; lng: number };
+  children?: React.ReactNode;
+}
+
+interface MockPolylineProps {
+  path: Array<{ lat: number; lng: number }>;
+  options?: {
+    strokeColor?: string;
+    strokeWeight?: number;
   };
-});
+}
+
+// Mock the GoogleMap component
+vi.mock("@react-google-maps/api", () => ({
+  GoogleMap: ({ children, ...props }: MockMapProps) => (
+    <div data-testid="map" {...props}>
+      {children}
+    </div>
+  ),
+  Marker: ({ children, ...props }: MockMarkerProps) => (
+    <div data-testid="marker" {...props}>
+      {children}
+    </div>
+  ),
+  Polyline: (props: MockPolylineProps) => (
+    <div data-testid="polyline" {...props} />
+  ),
+  InfoWindow: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="info-window">{children}</div>
+  ),
+}));
 
 describe("Map", () => {
   const sampleRoute = [
     { lat: 35.6762, lng: 139.6503 }, // Tokyo
     { lat: 34.6937, lng: 135.5023 }, // Osaka
-  ];
-
-  const sampleDays = [
-    {
-      name: "Day 1: Tokyo to Osaka",
-      points: [
-        { lat: 35.6762, lng: 139.6503 }, // Tokyo
-        { lat: 35.3, lng: 138.5 }, // Midpoint
-        { lat: 34.6937, lng: 135.5023 }, // Osaka
-      ],
-    },
   ];
 
   beforeEach(() => {

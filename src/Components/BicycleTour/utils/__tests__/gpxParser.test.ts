@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi, type Mock } from "vitest";
 import {
   combineDayRoutes,
   downsampleRoutePoints,
@@ -16,119 +16,42 @@ global.fetch = vi.fn();
 
 // Mock DOMParser for tests
 class MockDOMParser {
-  parseFromString(str: string, type: string) {
-    if (str.includes("<invalid>")) {
+  parseFromString(str: string) {
+    if (str === "invalid") {
       throw new Error("Invalid XML");
     }
 
-    return {
-      querySelectorAll: (selector: string) => {
-        if (selector === "trkpt") {
-          // For the first test case - parse a simple GPX string
-          if (str.includes('lat="35.6762"') && str.includes('lat="34.6937"')) {
-            return [
-              {
-                getAttribute: (attr: string) => {
-                  if (attr === "lat") return "35.6762";
-                  if (attr === "lon") return "139.6503";
-                  return null;
-                },
-                querySelector: (sel: string) => {
-                  if (sel === "ele") return { textContent: "10" };
-                  if (sel === "time")
-                    return { textContent: "2023-01-01T09:00:00Z" };
-                  if (sel === "name") return { textContent: "Tokyo" };
-                  return null;
-                },
+    const mockXMLDocument = {
+      getElementsByTagName: (tag: string) => {
+        if (tag === "trkpt") {
+          return [
+            {
+              getAttribute: (attr: string) =>
+                attr === "lat" ? "35.6762" : "139.6503",
+              getElementsByTagName: (childTag: string) => {
+                if (childTag === "time") {
+                  return [{ textContent: "2023-01-01T09:00:00Z" }];
+                }
+                if (childTag === "ele") {
+                  return [{ textContent: "100" }];
+                }
+                if (childTag === "name") {
+                  return [{ textContent: "Test Point" }];
+                }
+                return [];
               },
-              {
-                getAttribute: (attr: string) => {
-                  if (attr === "lat") return "34.6937";
-                  if (attr === "lon") return "135.5023";
-                  return null;
-                },
-                querySelector: (sel: string) => {
-                  if (sel === "ele") return { textContent: "20" };
-                  if (sel === "time")
-                    return { textContent: "2023-01-01T15:00:00Z" };
-                  if (sel === "name") return { textContent: "Osaka" };
-                  return null;
-                },
-              },
-            ];
-          }
-          // For the second test case - missing optional fields
-          else if (str.includes("missing-fields")) {
-            return [
-              {
-                getAttribute: (attr: string) => {
-                  if (attr === "lat") return "35.6762";
-                  if (attr === "lon") return "139.6503";
-                  return null;
-                },
-                querySelector: () => null,
-              },
-            ];
-          }
-          // For loadGpxFromUrl test
-          else if (str.includes('lat="35.6762" lon="139.6503"')) {
-            return [
-              {
-                getAttribute: (attr: string) => {
-                  if (attr === "lat") return "35.6762";
-                  if (attr === "lon") return "139.6503";
-                  return null;
-                },
-                querySelector: (sel: string) => {
-                  if (sel === "ele") return { textContent: "10" };
-                  return null;
-                },
-              },
-            ];
-          }
-          // For loadTour test - day 1
-          else if (str.includes("mockGpxString1")) {
-            return [
-              {
-                getAttribute: (attr: string) => {
-                  if (attr === "lat") return "35.6762";
-                  if (attr === "lon") return "139.6503";
-                  return null;
-                },
-                querySelector: (sel: string) => {
-                  if (sel === "ele") return { textContent: "10" };
-                  return null;
-                },
-              },
-            ];
-          }
-          // For loadTour test - day 2
-          else if (str.includes("mockGpxString2")) {
-            return [
-              {
-                getAttribute: (attr: string) => {
-                  if (attr === "lat") return "34.6937";
-                  if (attr === "lon") return "135.5023";
-                  return null;
-                },
-                querySelector: (sel: string) => {
-                  if (sel === "ele") return { textContent: "20" };
-                  return null;
-                },
-              },
-            ];
-          }
-          // Default case for other tests
-          return [];
+            },
+          ];
         }
         return [];
       },
     };
+    return mockXMLDocument;
   }
 }
 
 // Replace the global DOMParser with our mock
-global.DOMParser = MockDOMParser as any;
+global.DOMParser = MockDOMParser as unknown as typeof DOMParser;
 
 describe("GPX Parser", () => {
   beforeEach(() => {
@@ -225,7 +148,7 @@ describe("GPX Parser", () => {
         </gpx>
       `;
 
-      (global.fetch as any).mockResolvedValue({
+      (global.fetch as unknown as Mock).mockResolvedValue({
         ok: true,
         text: vi.fn().mockResolvedValue(mockGpxString),
       });
@@ -240,7 +163,9 @@ describe("GPX Parser", () => {
 
     it("should handle fetch errors", async () => {
       // Mock a network error
-      (global.fetch as any).mockRejectedValue(new Error("Network error"));
+      (global.fetch as unknown as Mock).mockRejectedValue(
+        new Error("Network error")
+      );
 
       await expect(
         loadGpxFromUrl("https://example.com/test.gpx")
@@ -249,7 +174,7 @@ describe("GPX Parser", () => {
 
     it("should handle non-ok responses", async () => {
       // Mock a 404 response
-      (global.fetch as any).mockResolvedValue({
+      (global.fetch as unknown as Mock).mockResolvedValue({
         ok: false,
         statusText: "Not Found",
       });
@@ -362,7 +287,7 @@ describe("GPX Parser", () => {
   describe("loadTour", () => {
     it("should load multiple GPX files to create a tour", async () => {
       // Mock the fetch responses for multiple GPX files
-      (global.fetch as any)
+      (global.fetch as unknown as Mock)
         .mockImplementationOnce(() =>
           Promise.resolve({
             ok: true,

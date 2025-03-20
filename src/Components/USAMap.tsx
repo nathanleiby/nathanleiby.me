@@ -82,7 +82,13 @@ const visitedPlaces = [
 export const USAMap = () => {
   const theme = useMantineTheme();
 
-  const isVisited = (geo: any) => {
+  interface GeoFeature {
+    properties: {
+      name: string;
+    };
+  }
+
+  const isVisited = (geo: GeoFeature) => {
     return _.includes(visitedPlaces, geo.properties.name);
   };
 
@@ -132,7 +138,7 @@ export const USAMap = () => {
                         subject={centroid}
                         dx={offsets[cur.id][0]}
                         dy={offsets[cur.id][1]}
-                        // @ts-ignore
+                        // @ts-expect-error This is needed because the library types are incomplete
                         connectorProps={undefined}
                       >
                         <text

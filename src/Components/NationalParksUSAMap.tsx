@@ -1,3 +1,4 @@
+import React from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 import { useMantineTheme } from "@mantine/core";
@@ -96,11 +97,31 @@ const geography = {
 
 console.log(nationalParksOnly.map((x) => x.properties.Name));
 
-export const NationalParksUSAMap = () => {
+interface NationalParksUSAMapProps {
+  onStateClick?: (state: string) => void;
+}
+
+interface GeoFeature {
+  properties: {
+    Name: string;
+  };
+}
+
+const NationalParksUSAMap: React.FC<NationalParksUSAMapProps> = ({
+  onStateClick,
+}) => {
   const theme = useMantineTheme();
 
-  const isVisited = (geo: any) => {
+  const isVisited = (geo: GeoFeature) => {
     return _.includes(visitedPlaces, geo.properties.Name);
+  };
+
+  const handleStateClick = (event: React.MouseEvent<SVGElement>) => {
+    const target = event.target as SVGElement;
+    const stateAbbr = target.dataset.name;
+    if (stateAbbr && onStateClick) {
+      onStateClick(stateAbbr);
+    }
   };
 
   return (
@@ -119,6 +140,8 @@ export const NationalParksUSAMap = () => {
                   hover: { outline: "none" },
                   pressed: { outline: "none" },
                 }}
+                onClick={onStateClick ? handleStateClick : undefined}
+                data-name={geo.properties.POSTAL}
               />
             ))}
           </>
@@ -149,3 +172,5 @@ export const NationalParksUSAMap = () => {
     </ComposableMap>
   );
 };
+
+export default NationalParksUSAMap;

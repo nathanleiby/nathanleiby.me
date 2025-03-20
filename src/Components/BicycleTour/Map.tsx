@@ -12,14 +12,6 @@ import styles from "./Map.module.css";
 import { type DayRoute } from "./utils/gpxParser";
 import { type RoutePoint } from "./utils/routeMetrics";
 
-// Sample route data (Tokyo → Osaka → Kyoto → Tokyo)
-const sampleRoute = [
-  { lat: 35.6762, lng: 139.6503 }, // Tokyo
-  { lat: 34.6937, lng: 135.5023 }, // Osaka
-  { lat: 35.0116, lng: 135.7681 }, // Kyoto
-  { lat: 35.6762, lng: 139.6503 }, // Tokyo
-];
-
 interface MapProps {
   route: RoutePoint[];
   center?: [number, number];
@@ -149,7 +141,8 @@ export function Map({ route, center, zoom, days }: MapProps) {
   // Fix for Leaflet icon paths in production
   useEffect(() => {
     // This is needed to fix Leaflet's icon paths in production
-    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    delete (L.Icon.Default.prototype as { _getIconUrl?: () => string })
+      ._getIconUrl;
     L.Icon.Default.mergeOptions({
       iconRetinaUrl: "/marker-icon-2x.png",
       iconUrl: "/marker-icon.png",
@@ -196,3 +189,5 @@ export function Map({ route, center, zoom, days }: MapProps) {
     </MapContainer>
   );
 }
+
+export default Map;

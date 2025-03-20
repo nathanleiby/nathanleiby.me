@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { MantineProvider } from "@mantine/core";
 import { render, RenderOptions } from "@testing-library/react";
 import { ReactElement } from "react";

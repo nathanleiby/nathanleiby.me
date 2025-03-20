@@ -1,15 +1,24 @@
 import { useMantineTheme } from "@mantine/core";
+import React from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
   Graticule,
+  Marker,
 } from "react-simple-maps";
 
 import _ from "lodash";
 import countries from "./data/countries.json";
 
-export function WorldMap() {
+interface WorldMapProps {
+  markers?: Array<{
+    name: string;
+    coordinates: [number, number];
+  }>;
+}
+
+const WorldMap: React.FC<WorldMapProps> = ({ markers = [] }) => {
   const theme = useMantineTheme();
 
   const visitedPlaces = [
@@ -60,7 +69,13 @@ export function WorldMap() {
     "New Zealand",
   ];
 
-  const isVisited = (geo: any) => {
+  interface GeoFeature {
+    properties: {
+      name: string;
+    };
+  }
+
+  const isVisited = (geo: GeoFeature) => {
     return _.includes(visitedPlaces, geo.properties.name);
   };
 
@@ -92,6 +107,25 @@ export function WorldMap() {
           ))
         }
       </Geographies>
+
+      {markers.map(({ name, coordinates }) => (
+        <Marker key={name} coordinates={coordinates}>
+          <circle r={8} fill="#F00" stroke="#fff" strokeWidth={2} />
+          <text
+            textAnchor="middle"
+            y={-12}
+            style={{
+              fontFamily: "system-ui",
+              fill: "#5D5A6D",
+              fontSize: ".6rem",
+            }}
+          >
+            {name}
+          </text>
+        </Marker>
+      ))}
     </ComposableMap>
   );
-}
+};
+
+export default WorldMap;
