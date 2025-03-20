@@ -21,6 +21,72 @@ class MockDOMParser {
       throw new Error("Invalid XML");
     }
 
+    // For the simple GPX test case
+    if (str.includes("Tokyo") && str.includes("Osaka")) {
+      const points = [
+        {
+          getAttribute: (attr: string) =>
+            attr === "lat" ? "35.6762" : "139.6503",
+          querySelector: (selector: string) => {
+            switch (selector) {
+              case "ele":
+                return { textContent: "10" };
+              case "time":
+                return { textContent: "2023-01-01T09:00:00Z" };
+              case "name":
+                return { textContent: "Tokyo" };
+              default:
+                return null;
+            }
+          },
+        },
+        {
+          getAttribute: (attr: string) =>
+            attr === "lat" ? "34.6937" : "135.5023",
+          querySelector: (selector: string) => {
+            switch (selector) {
+              case "ele":
+                return { textContent: "20" };
+              case "time":
+                return { textContent: "2023-01-01T15:00:00Z" };
+              case "name":
+                return { textContent: "Osaka" };
+              default:
+                return null;
+            }
+          },
+        },
+      ];
+
+      return {
+        querySelectorAll: (selector: string) => {
+          if (selector === "trkpt") {
+            return points;
+          }
+          return [];
+        },
+      };
+    }
+
+    // For the missing fields test case
+    if (str.includes("missing-fields")) {
+      const point = {
+        getAttribute: (attr: string) =>
+          attr === "lat" ? "35.6762" : "139.6503",
+        querySelector: () => null,
+      };
+
+      return {
+        querySelectorAll: (selector: string) => {
+          if (selector === "trkpt") {
+            return [point];
+          }
+          return [];
+        },
+      };
+    }
+
+    // Default mock response
     const mockTrackPoint = {
       getAttribute: (attr: string) => (attr === "lat" ? "35.6762" : "139.6503"),
       querySelector: (selector: string) => {
@@ -37,7 +103,7 @@ class MockDOMParser {
       },
     };
 
-    const mockXMLDocument = {
+    return {
       querySelectorAll: (selector: string) => {
         if (selector === "trkpt") {
           return [mockTrackPoint];
@@ -45,7 +111,6 @@ class MockDOMParser {
         return [];
       },
     };
-    return mockXMLDocument;
   }
 }
 
