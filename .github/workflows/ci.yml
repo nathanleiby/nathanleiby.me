@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Lint
-        run: npm run lint || echo "::warning::Linting issues found, but continuing with build"
+        run: npm run lint
 
       - name: Run tests with coverage
         run: npm run test:coverage
