@@ -21,27 +21,26 @@ class MockDOMParser {
       throw new Error("Invalid XML");
     }
 
+    const mockTrackPoint = {
+      getAttribute: (attr: string) => (attr === "lat" ? "35.6762" : "139.6503"),
+      querySelector: (selector: string) => {
+        switch (selector) {
+          case "ele":
+            return { textContent: "100" };
+          case "time":
+            return { textContent: "2023-01-01T09:00:00Z" };
+          case "name":
+            return { textContent: "Test Point" };
+          default:
+            return null;
+        }
+      },
+    };
+
     const mockXMLDocument = {
-      getElementsByTagName: (tag: string) => {
-        if (tag === "trkpt") {
-          return [
-            {
-              getAttribute: (attr: string) =>
-                attr === "lat" ? "35.6762" : "139.6503",
-              getElementsByTagName: (childTag: string) => {
-                if (childTag === "time") {
-                  return [{ textContent: "2023-01-01T09:00:00Z" }];
-                }
-                if (childTag === "ele") {
-                  return [{ textContent: "100" }];
-                }
-                if (childTag === "name") {
-                  return [{ textContent: "Test Point" }];
-                }
-                return [];
-              },
-            },
-          ];
+      querySelectorAll: (selector: string) => {
+        if (selector === "trkpt") {
+          return [mockTrackPoint];
         }
         return [];
       },
