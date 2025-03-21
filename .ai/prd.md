@@ -46,8 +46,17 @@ Enhance [nathanleiby.me](https://nathanleiby.me/) to include a **bicycle touring
    - Merge them into a single simple GPX route for one Tour "East Hokkaido Tour"
 
 6. **Add Text content:**
+
    - If available, include text for a tour.
    - For example, the tour description of east hokkaido is available in the data folder as a `tour.md` file.
+
+7. **Improve page load performance**
+
+   - Use actual GPX files from `data/tours/*/gpx`
+   - We don't need to improve the downsampling quality.
+   - Rather, we must ensure that it is run locally and a new downsample route is precomputed and saved.
+   - Preserve all current product behavior. No changes are expected to UI, other than faster loading of the data.
+   - The downsampling script should be saved so we can use it with future routes, as well.
 
 ---
 

@@ -113,3 +113,22 @@ The photo gallery component provides a visual representation of the bicycle rout
 - **Image Optimization**: Uses optimized images with proper loading states
 - **Captions**: Displays descriptive captions for each photo
 - **Fallback Handling**: Provides fallback images if the main images fail to load
+
+## GPX Route Processing
+
+When adding new GPX routes to the bicycle tour section:
+
+1. Place the raw GPX files in the appropriate tour directory under `data/tours/<tour-name>/gpx/`
+2. Run the preprocessing script to generate optimized versions:
+   ```bash
+   npm run preprocess-gpx
+   ```
+3. Commit both the original GPX files and the processed versions
+
+The preprocessing script will:
+
+- Parse the raw GPX files
+- Downsample the route points while maintaining visual accuracy
+- Save the optimized versions to `public/data/gpx/`
+
+This step only needs to be run when new GPX routes are added to the project.
