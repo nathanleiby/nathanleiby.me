@@ -8,6 +8,7 @@ import {
   IconBrandMedium,
   IconBrandSoundcloud,
   IconBrandStackoverflow,
+  IconBrandStrava,
   IconBrandYoutube,
   IconMinusVertical,
 } from "@tabler/icons-react";
@@ -38,6 +39,7 @@ const group1 = [
 
 const group2 = [
   { href: "https://www.goodreads.com/user/show/30810164", Icon: IconBook },
+  { href: "https://www.strava.com/athletes/5050097", Icon: IconBrandStrava},
   { href: "https://nathanleiby.bandcamp.com/", Icon: IconBrandBandcamp },
   {
     href: "https://www.youtube.com/user/NotoriousNathaniel",
